@@ -3,6 +3,7 @@ form {
 	width: 100%;
 	max-width: 300px;
 	padding: 10px;
+	margin: 0px auto;
 
 	display: flex;
 	flex-direction: column;
@@ -25,6 +26,8 @@ input {
 	color: black;
 
 }
+
+
 
 input::placeholder {
 	color: gray;
