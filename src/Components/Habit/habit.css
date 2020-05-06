@@ -1,0 +1,232 @@
+
+
+.habit-container {
+	width: 100%;
+
+	/* border: solid black 2px; */
+}
+
+.habit-title>button>img {
+	width: 25px;
+	height: 25px;
+}
+
+.edit-icon {
+	width: 30px;
+	height: 30px;
+	margin: 0 5px;
+	display: inline;
+}
+
+.habit-title>div>h2 {
+	font-size: 1.8rem;
+	font-weight: 700;
+}
+
+.habit-title>div>h3 {
+	font-size: 1.8rem;
+	font-weight: 400;
+	color: white;
+}
+
+.habit-container>p {
+	/* text-align: center; */
+}
+
+.circle-button {
+	display: inline;
+
+	margin: 10px 0px;
+	/* border: 2px solid black; */
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+.top-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px 0;
+}
+
+.habit-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.delete-button {
+	border: red solid 2px;
+    border-radius: 15px;
+    background-color: red;
+    height: 40px;
+	margin: 10px auto;
+	margin-top: 40px;
+    width: 100%;
+	max-width: 200px;
+	color: red;
+
+}
+
+.delete-button {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 80px;
+}
+
+.delete-button>p {
+	color: white;
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+.no-margin {
+	margin: 0px;
+}
+
+.habit-stats {
+	/* display: ;
+	position: ;
+	z-index: ; */
+
+	width: 100%;
+	/* height: ; */
+
+	padding: 0px;
+	/* border: dashed black 2px; */
+	margin: 0 auto;
+	margin-top: 20px;
+
+	/* color: ;
+	background-color: ;
+	border-radius: ;
+	box-shadow: ; */
+
+	/* font-size: ; */
+	/* font-weight: ; */
+	text-align: center;
+	/* text-decoration: ; */
+}
+
+.stat-box {
+	margin: 20px auto;
+	/* border: black solid 2px; */
+	border-radius: 15px;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	box-shadow: 0px 5px 10px rgb(0, 0, 0);
+}
+
+.stat-box>p {
+	color: black;
+	font-weight: 200;
+    font-size: .8rem;
+}
+
+#stats-box-num{
+	text-align: center;
+	color: black;
+	font-size: 2rem;
+}
+
+.grid-container {
+  display: grid;
+  margin-top: 20px;
+  width: 100%;
+  color: black;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px 4px;
+  grid-template-areas: "Sunday Monday Tuesday Wednesday Thursday Friday Saturday" "sunday-fill monday-fill tuesday-fill wednesday-fill thursday-fill friday-fill saturday-fill";
+}
+
+.Sunday { grid-area: Sunday; }
+
+.Monday { grid-area: Monday; }
+
+.Tuesday { grid-area: Tuesday; }
+
+.Wednesday { grid-area: Wednesday; }
+
+.Thursday { grid-area: Thursday; }
+
+.Friday { grid-area: Friday; }
+
+.Saturday { grid-area: Saturday; }
+
+.not-filled {
+	background-color: lightgray;
+	color: lightgray;
+}
+
+.filled {
+	background-color: rgb(45, 209, 45);
+	color: rgb(45, 209, 45);
+}
+
+.sunday-fill { 
+	grid-area: sunday-fill; 
+	width: 100%;
+	height: 100%;
+	user-select: none;
+}
+
+
+.monday-fill { 
+	grid-area: monday-fill; 
+	width: 100%;
+	height: 100%;
+	user-select: none;
+}
+
+.tuesday-fill { 
+	grid-area: tuesday-fill; 
+	width: 100%;
+	height: 100%;
+	user-select: none;
+}
+
+.wednesday-fill { 
+	grid-area: wednesday-fill; 
+	width: 100%;
+	height: 100%;
+	user-select: none;
+}
+
+.thursday-fill { 
+	grid-area: thursday-fill; 
+	width: 100%;
+	height: 100%;
+	user-select: none;
+}
+
+.friday-fill { 
+	grid-area: friday-fill; 
+	width: 100%;
+	height: 100%;
+	user-select: none;
+}
+
+.saturday-fill { 
+	grid-area: saturday-fill; 
+	width: 100%;
+	height: 100%;
+	user-select: none;
+}
+
+.completion-container {
+	margin-top: 20px;
+}
+
+.completion-container>p {
+	font-weight: 700;
+}
