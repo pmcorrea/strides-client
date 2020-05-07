@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <form
+      action=""
+      class="add-habit-form"
+    >
+      <p>
+        I want to
+      </p>
+      <input
+        placeholder="meditate"
+        type="text"
+      />
+      <p>
+        every
+      </p>
+      <div>
+        <button
+          class="circle-button-s"
+        >
+          S
+        </button>
+        <button
+          class="circle-button-s"
+        >
+          M
+        </button>
+        <button
+          class="circle-button-s"
+        >
+          T
+        </button>
+        <button
+          class="circle-button-s"
+        >
+          W
+        </button>
+        <button
+          class="circle-button-s"
+        >
+          T
+        </button>
+        <button
+          class="circle-button-s"
+        >
+          F
+        </button>
+        <button
+          class="circle-button-s"
+        >
+          S
+        </button>
+      </div>
+      <p>
+        for 30 days
+      </p>
+      <button
+        type="submit"
+      >
+        <a
+          href="/home"
+        >
+          Submit
+        </a>
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

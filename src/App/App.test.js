@@ -1,9 +1,34 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { render, cleanup } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+afterEach(cleanup)
+
+// Snapshot Test
+it ('should take a snapshot', () => {
+  const { asFragment } = render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+    )
+
+  expect(asFragment(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>)).toMatchSnapshot()
+})
+
+// Smoke Test
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+
+  ReactDOM.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>,
+    div
+  )
+  ReactDOM.unmountComponentAtNode(div)
+})

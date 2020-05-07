@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <div
+    data-testid="login-test-container"
+  >
+    <h1
+      data-testid="login-h1-test-container"
+    >
+      Strides
+    </h1>
+    <form
+      action=""
+    >
+      <input
+        placeholder="username"
+        type="text"
+      />
+      <input
+        placeholder="password"
+        type="password"
+      />
+      <div>
+        <button>
+          <a
+            href="/home"
+          >
+            Login
+          </a>
+        </button>
+        <button>
+          <a
+            href="/register"
+          >
+            Register
+          </a>
+        </button>
+      </div>
+    </form>
+  </div>
+</DocumentFragment>
+`;

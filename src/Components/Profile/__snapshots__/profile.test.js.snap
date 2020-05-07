@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="profile-box"
+    >
+      <div
+        class="top-bar"
+      >
+        <button
+          class="circle-button"
+        >
+          Logo
+        </button>
+        <button>
+          <a
+            href="/settings"
+          >
+            <img
+              alt=""
+              class="icon-bar-icon"
+              src="gear.svg"
+            />
+          </a>
+        </button>
+      </div>
+      <img
+        alt=""
+        class="avatar"
+        src="avatar.jpg"
+      />
+      <h2>
+        Penelope Arias
+      </h2>
+      <div
+        class="progress-bar-container"
+      >
+        <div
+          class="progress-bar-profile"
+        >
+          <div
+            class="progress-bar-fill-profile"
+          />
+        </div>
+        <div
+          class="progress-bar-stats"
+        >
+          <p>
+            lvl 4
+          </p>
+          <p>
+            26%
+          </p>
+        </div>
+      </div>
+      <div
+        class="stats"
+      >
+        <div
+          class="box-1 margin-center"
+        >
+          <p
+            class="stats-box-header"
+          >
+            habits done
+          </p>
+          <p
+            class="stats-box-num"
+          >
+            9
+          </p>
+        </div>
+        <div
+          class="box-2 margin-center"
+        >
+          <p
+            class="stats-box-header"
+          >
+            logged days
+          </p>
+          <p
+            class="stats-box-num"
+          >
+            9
+          </p>
+        </div>
+        <div
+          class="box-3 margin-center"
+        >
+          <p
+            class="stats-box-header"
+          >
+            perfect habits
+          </p>
+          <p
+            class="stats-box-num"
+          >
+            9
+          </p>
+        </div>
+        <div
+          class="box-4 margin-center"
+        >
+          <p
+            class="stats-box-header"
+          >
+            biggest streak
+          </p>
+          <p
+            class="stats-box-num"
+          >
+            9
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
