@@ -63,13 +63,47 @@ export default function AddHabit() {
 					<p>every</p>
 
 					<div>
-					<button type="button" value='sunday' className="circle-button-s" onClick={(e) => changeDay(e.target.value)}>S</button>
-					<button type="button" value="monday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)}>M</button>
-					<button type="button" value="tuesday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)}>T</button>
-					<button type="button" value="wednesday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)}>W</button>
-					<button type="button" value="thursday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)}>T</button>
-					<button type="button" value="friday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)}>F</button>
-					<button type="button" value="saturday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)}>S</button>
+					<button type="button" value='sunday' className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
+						backgroundColor: sunday ? 'black' : 'white',
+						color: sunday ? 'white' : 'black',
+						border: sunday ? 'none': 'none'
+					}}>S</button>
+
+					<button type="button" value="monday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
+						backgroundColor: monday ? 'black' : 'white',
+						color: monday ? 'white' : 'black',
+						border: monday ? 'none' : 'none'
+					}}>M</button>
+
+					<button type="button" value="tuesday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
+						backgroundColor: tuesday ? 'black' : 'white',
+						color: tuesday ? 'white' : 'black',
+						border: tuesday ? 'none' : 'none'
+					}}>T</button>
+
+					<button type="button" value="wednesday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
+						backgroundColor: wednesday ? 'black' : 'white',
+						color: wednesday ? 'white' : 'black',
+						border: wednesday ? 'none' : 'none'
+					}}>W</button>
+
+					<button type="button" value="thursday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
+						backgroundColor: thursday ? 'black' : 'white',
+						color: thursday ? 'white' : 'black',
+						border: thursday ? 'none' : 'none'
+					}}>T</button>
+
+					<button type="button" value="friday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
+						backgroundColor: friday ? 'black' : 'white',
+						color: friday ? 'white' : 'black',
+						border: friday ? 'none' : 'none'
+					}}>F</button>
+
+					<button type="button" value="saturday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
+						backgroundColor: saturday ? 'black' : 'white',
+						color: saturday ? 'white' : 'black',
+						border: saturday ? 'none' : 'none'
+					}}>S</button>
 					</div>
 					<p>for 30 days</p>
 

@@ -1,9 +1,9 @@
-import React, { useState, useImperativeHandle } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
 import "./login.css"
 
-export default function Login() {
+export default function Login(routeProps) {
 	const [stateUsername, setUsername] = useState('');
 	const [statePassword, setPassword] = useState('');
 
@@ -15,7 +15,8 @@ export default function Login() {
 			username: username.value,
 			password: password.value
 		}
-		
+
+		routeProps.history.push("/home")		
 	}
 
 	return (
@@ -28,9 +29,9 @@ export default function Login() {
 
 					<div>
 						<button type='submit'>
-							<Link to="/home">
+							{/* <Link to="/home"> */}
 								Login
-							</Link>
+							{/* </Link> */}
 						</button>
 						<button type="button">
 							<Link to="/register">

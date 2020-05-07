@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./register.css"
 
-export default function Register() {
+export default function Register(routeProps) {
 	const [stateUsername, setUsername] = useState('');
 	const [statePassword, setPassword] = useState('');
 	const [stateConfirmPassword, setConfirmPassword] = useState('');
@@ -17,6 +17,8 @@ export default function Register() {
 			password: password.value,
 			confirmPassword: confirmPassword.value
 		}
+
+		routeProps.history.push("/")		
 
 	}
 
@@ -37,9 +39,9 @@ export default function Register() {
 					</button>
 
 					<button type="submit">
-						<Link to="/">
+						{/* <Link to="/"> */}
 							Submit
-						</Link>
+						{/* </Link> */}
 					</button>
 				</div>
 		</form>
