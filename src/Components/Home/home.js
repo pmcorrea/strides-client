@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
+import HomeIcon from "../../Assets/home-icon.svg"
+import PlusIcon from "../../Assets/plus-icon.svg"
+import ProfileIcon from "../../Assets/profile-icon.svg"
+
+
 
 import "./home.css"
 
@@ -131,6 +136,26 @@ export default function Home() {
 				</li>
 
 			</ul>
+
+			<div className="bottom-toolbar">
+				<button>
+					<Link to="/home">
+						<img src={HomeIcon} alt="" className="icon-bar-icon" />
+					</Link>
+				</button>
+
+				<button>
+					<Link to="/add-habit">
+						<img src={PlusIcon} alt="" className="icon-bar-icon" />
+					</Link>
+				</button>
+
+				<button>
+					<Link to="/profile">
+						<img src={ProfileIcon} alt="" className="icon-bar-icon" />
+					</Link>
+				</button>
+			</div>	
 		</div>
 	);
 }

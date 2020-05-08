@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
+import HomeIcon from "../../Assets/home-icon.svg"
+import PlusIcon from "../../Assets/plus-icon.svg"
+import ProfileIcon from "../../Assets/profile-icon.svg"
+
 import "./add-habit.css"
 
 export default function AddHabit() {
@@ -115,6 +119,26 @@ export default function AddHabit() {
 						</button>
 					
 			</form>
+
+			<div className="bottom-toolbar">
+				<button>
+					<Link to="/home">
+						<img src={HomeIcon} alt="" className="icon-bar-icon" />
+					</Link>
+				</button>
+
+				<button>
+					<Link to="/add-habit">
+						<img src={PlusIcon} alt="" className="icon-bar-icon" />
+					</Link>
+				</button>
+
+				<button>
+					<Link to="/profile">
+						<img src={ProfileIcon} alt="" className="icon-bar-icon" />
+					</Link>
+				</button>
+			</div>	
 		</div>
 	);
 }

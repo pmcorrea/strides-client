@@ -43,7 +43,7 @@ form>div {
 	padding: 0px;
 }
 
-form>div>button {
+.login-form>div>button, .login-form>div>a {
 	width: 45%;
 	margin: 5px 0px;
 	color: white;
@@ -53,10 +53,17 @@ form>div>button {
 	padding: 5px;
 	border: solid white 2px;
 	border-radius: 15px;
+	text-align: center;
+	cursor: pointer;
 }
 
-form>div>button:hover {
+.login-form>div>button:hover, .login-form>div>a:hover {
 	color: black;
 	background-color: white;
 	border: solid white 2px;
 }
+
+.login-form>a:visited {
+	color: white;
+}
+

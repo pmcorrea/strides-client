@@ -15,10 +15,19 @@ import Profile from "../Components/Profile/profile.js";
 import Habit from "../Components/Habit/habit.js";
 import EditHabit from "../Components/Edit-Habit/edit-habit.js";
 import Settings from "../Components/Settings/settings.js";
+import Book from "../Components/Book/book.js";
 
 import HomeIcon from "../Assets/home-icon.svg"
 import PlusIcon from "../Assets/plus-icon.svg"
 import ProfileIcon from "../Assets/profile-icon.svg"
+
+import ApolloClient from 'apollo-boost'
+import { ApolloProvider } from '@apollo/react-hooks'
+
+
+const apolloClient = new ApolloClient({
+  uri: "http://localhost:5000/graphql",
+})
 
 
 export default class App extends Component {
@@ -88,6 +97,13 @@ export default class App extends Component {
             return <Settings {...routeProps} />
           }}
         />
+
+        <Route
+          path="/book"
+          render={routeProps => {
+            return <Book {...routeProps} />
+          }}
+        />
       </>
     )
   }
@@ -120,16 +136,18 @@ export default class App extends Component {
 
   render() {
     return (
+      <ApolloProvider client={apolloClient}>
       <MainContext.Provider value={this.state}>
         <div className="App">
           {this.renderMainRoutes()}
 
-          {window.location.pathname === "/" | window.location.pathname === "/register"
+          {/* {window.location.pathname === "/" | window.location.pathname === "/register"
             ? ""
             : this.renderBottomBar()
-          }  
+          }   */}
         </div>
       </MainContext.Provider>
+      </ApolloProvider>
     );
   }
 }

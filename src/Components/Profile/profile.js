@@ -5,6 +5,10 @@ import "./profile.css"
 import Gear from "../../Assets/gear.svg"
 import Avatar from 	"../../Assets/avatar.jpg"
 
+import HomeIcon from "../../Assets/home-icon.svg"
+import PlusIcon from "../../Assets/plus-icon.svg"
+import ProfileIcon from "../../Assets/profile-icon.svg"
+
 export default function Profile() {
 	// const [count, setCount] = useState(0);
 
@@ -13,7 +17,7 @@ export default function Profile() {
 			<div className="profile-box">
 				<div className="top-bar">
 					
-					<button className="circle-button">Logo</button>
+					<button className="circle-button"> </button>
 					<button>
 						<Link to="/settings">
 							<img src={Gear} alt="" className="icon-bar-icon" />
@@ -60,6 +64,26 @@ export default function Profile() {
 							</div>
 						</div>
 		</div>
+
+			<div className="bottom-toolbar">
+				<button>
+					<Link to="/home">
+						<img src={HomeIcon} alt="" className="icon-bar-icon" />
+					</Link>
+				</button>
+
+				<button>
+					<Link to="/add-habit">
+						<img src={PlusIcon} alt="" className="icon-bar-icon" />
+					</Link>
+				</button>
+
+				<button>
+					<Link to="/profile">
+						<img src={ProfileIcon} alt="" className="icon-bar-icon" />
+					</Link>
+				</button>
+			</div>	
 		</div>
 	);
 }

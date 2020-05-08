@@ -1,0 +1,29 @@
+.registration-form>div>button, .registration-form>div>a {
+	width: 45%;
+	margin: 5px 0px;
+	color: white;
+	background-color: transparent;
+	font-size: var(--button-font-size);
+	font-weight: 700;
+	padding: 5px;
+	border: solid white 2px;
+	border-radius: 15px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.registration-form>div>button:hover, .registration-form>div>a:hover {
+	color: black;
+	background-color: white;
+	border: solid white 2px;
+}
+
+.registration-form>a:visited {
+	color: white;
+}
+
+
+
+.registration-form {
+
+}

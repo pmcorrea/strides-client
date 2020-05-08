@@ -3,7 +3,7 @@ ul {
 	/* border: dashed black 2px; */
 	width: 100%;
 	margin: 0 auto;
-	margin-bottom: 40px;
+	margin-bottom: 80px;
 	padding: 0px;
 }
 
@@ -81,7 +81,7 @@ li>p {
 
 .bottom-toolbar {
 	width: 80vw;
-	max-width: 500px;
+	max-width: 400px;
 	height: 50px;
 	padding: 10px;
 	background-color: white;
@@ -100,10 +100,11 @@ li>p {
 
 .bottom-toolbar>button {
 	height: 50px;
-    margin: 0 auto;
-    /* background-color: gray; */
-    font-size: var(--button-font-size);
-    padding: 5px;
+	margin: 0 auto;
+	background-color: transparent;
+	font-size: var(--button-font-size);
+	padding: 5px;
+	border: none;
 }
 
 .icon-bar-icon {

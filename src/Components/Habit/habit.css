@@ -119,7 +119,7 @@
 	margin: 20px auto;
 	/* border: black solid 2px; */
 	border-radius: 15px;
-	height: 100px;
+	height: 120px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -144,6 +144,7 @@
   display: grid;
   margin-top: 20px;
   width: 100%;
+  height: 50%;
   color: black;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;

@@ -1,0 +1,28 @@
+.settings-container {
+	width: 100%;
+	max-width: 400px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	/* border: solid black 2px; */
+}
+
+
+
+.settings-container>h2, .settings-container>p {
+	margin: 0px;
+}
+
+.settings-container>h2 {
+	margin-top: 20px;
+	font-size: 1.8rem;
+}
+
+.settings-container>p {
+	color: black;
+	font-weight: 700;
+}
+
+
