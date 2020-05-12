@@ -1,15 +1,110 @@
 import React, { useState } from 'react';
 import { Route, Link, Redirect } from "react-router-dom";
 
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
+import { habitById, logHabit } from '../../Queries/queries'
+
 import "./habit.css"
 import BackArrowButton from "../../Assets/back.svg"
 import EditButton from '../../Assets/edit.svg'
 import CheckmarkButton from '../../Assets/checkmark.svg'
 
-export default function Habit() {
-	// const [count, setCount] = useState(0);
+const dateHelper = require('date-fns')
 
-	return (
+export default function Habit(routeProps) {
+	const [stateError, setError] = useState(null)
+	let habitId = routeProps.match.params.id
+
+	const { loading, data } = useQuery(habitById, {
+		variables: {
+			id: routeProps.match.params.id.toString()
+		}
+	})
+	
+	let diff;
+
+	if (data) {
+		let startDate = data["habitById"]["habit_start_date"]
+
+		let today_iso = new Date().toISOString()
+		let today = dateHelper.parseISO(today_iso)
+		startDate = dateHelper.parseISO(startDate)
+
+		diff = dateHelper.differenceInCalendarDays(
+			today,
+			startDate
+		)
+
+		diff = diff.toString()
+	}
+	
+	function returnDays({sunday, monday, tuesday, wednesday, thursday, friday, saturday}) {
+		let days = []
+		
+		if (sunday === 'true') {
+			days.push('Sunday')
+		}
+
+		if (monday === 'true') {
+			days.push('Monday')
+		}
+
+		if (tuesday === 'true') {
+			days.push('Tuesday')
+		}
+
+		if (wednesday === 'true') {
+			days.push('Wednesday')
+		}
+
+		if (thursday === 'true') {
+			days.push('Thursday')
+		}
+
+		if (friday === 'true') {
+			days.push('Friday')
+		}
+
+		if (saturday === 'true') {
+			days.push('Saturday')
+		}
+
+		days = days.join(", ")
+
+		return days
+	}
+
+	const [createLog, { loadinglogDay, datalogday, error }] = useMutation(
+		logHabit,
+		{
+			variables: {
+				id: habitId,
+				column: diff
+			},
+			onError: (error) => {
+				console.log(error.graphQLErrors[0].message)
+				setError(`${error.graphQLErrors[0].message}`)
+			},
+			refetchQueries: [{ query: habitById,
+				variables: {
+					id: routeProps.match.params.id.toString()
+				} }],
+		});
+
+
+	if (loadinglogDay || loadinglogDay === undefined) {
+		// console.log('loading...')
+	} else if (error) {
+		console.log(error.message)
+	} else if (datalogday) {
+		console.log(datalogday["logDay"])
+	}	
+
+	function handleLog() {
+		createLog()
+	}
+
+	return data ? (
 		<div>
 			<div className="habit-container">
 				<div className="top-buttons">
@@ -18,17 +113,20 @@ export default function Habit() {
 					</Link>
 
 					<button className="no-margin">
-						<Link to="edit-habit">
+						<Link to="/edit-habit">
 							<img src={EditButton} alt="" className="edit-icon" />
 						</Link>
+					</button>
+
+					<button className="no-margin" type="button" onClick={() => handleLog()}>	
 						<img src={CheckmarkButton} alt="" className="edit-icon" />
 					</button>
 				</div>
 
 				<div className="habit-title">
 					<div className="no-margin">
-						<h2>Practice Code</h2>
-						<h3>everyday</h3>
+						<h2>{data["habitById"]["title"]}</h2>
+						<h3>{returnDays(data["habitById"])}</h3>
 					</div>
 				</div>
 
@@ -80,5 +178,5 @@ export default function Habit() {
 				</button>
 			</div>
 		</div>
-	);
+	) : (' ');
 }

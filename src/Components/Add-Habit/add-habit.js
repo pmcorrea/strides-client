@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
+import { addHabit, habitsByUser } from "../../Queries/queries"
 
 import HomeIcon from "../../Assets/home-icon.svg"
 import PlusIcon from "../../Assets/plus-icon.svg"
@@ -7,8 +9,9 @@ import ProfileIcon from "../../Assets/profile-icon.svg"
 
 import "./add-habit.css"
 
-export default function AddHabit() {
+export default function AddHabit(routeProps) {
 	const [habit, setHabit] = useState('');
+	const [stateError, setError] = useState(null)
 
 	const [sunday, setSunday] = useState(false);
 	const [monday, setMonday] = useState(false);
@@ -17,6 +20,27 @@ export default function AddHabit() {
 	const [thursday, setThursday] = useState(false);
 	const [friday, setFriday] = useState(false);
 	const [saturday, setSaturday] = useState(false);
+
+	const [createHabit, {loading,data,error}] = useMutation(
+		addHabit,
+		{
+			variables: {
+				title: habit,
+				sunday: sunday, 
+				monday: monday, 
+				tuesday: tuesday,
+				wednesday: wednesday,
+				thursday: thursday,
+				friday: friday,
+				saturday: saturday,
+			},
+			onError: (error) => {
+				console.log(error.graphQLErrors[0].message)
+				setError(`${error.graphQLErrors[0].message}`)
+			},
+			refetchQueries: [{ query: habitsByUser }],
+		}
+	)
 
 	function changeDay(value) {
 		if (value === 'sunday') {
@@ -48,22 +72,24 @@ export default function AddHabit() {
 		}
 	}
 
+	if (loading || loading === undefined) {
+		// console.log('loading...')
+	} else if (error) {
+		console.log('err:', error.graphQLErrors[0].message)
+	} else if (data) {
+		routeProps.history.push("/home")
+	}
+
 	function handleSubmit(e) {
 		e.preventDefault()
-
-		let body ={
-			habit: habit,
-			days: [sunday, monday, tuesday, wednesday, thursday, friday, saturday]
-		}
-
-		console.log(body)
+		createHabit()
 	}
 
 	return (
 		<div>
 			<form action="" className="add-habit-form" onSubmit={(e) => handleSubmit(e)}>
 				<p>I want to</p>
-				<input name="habit" type="text" placeholder="meditate" onChange={(e) => setHabit(e.target.value)}/>
+				<input name="habit" type="text" placeholder="meditate" onChange={(e) => setHabit(e.target.value.toString())}/>
 					<p>every</p>
 
 					<div>

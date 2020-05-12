@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, Redirect } from "react-router-dom";
 
 import './App.css';
 import '../Components/Home/home.css';
 
 import MainContext from "../Contexts/MainContext";
+import TokenHelpers from "../Services/token-helpers"
 
 import Login from "../Components/Login/login.js";
 import Home from "../Components/Home/home.js";
@@ -15,27 +16,48 @@ import Profile from "../Components/Profile/profile.js";
 import Habit from "../Components/Habit/habit.js";
 import EditHabit from "../Components/Edit-Habit/edit-habit.js";
 import Settings from "../Components/Settings/settings.js";
-import Book from "../Components/Book/book.js";
 
 import HomeIcon from "../Assets/home-icon.svg"
 import PlusIcon from "../Assets/plus-icon.svg"
 import ProfileIcon from "../Assets/profile-icon.svg"
 
-import ApolloClient from 'apollo-boost'
-import { ApolloProvider } from '@apollo/react-hooks'
+import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from "apollo-link-context";
+
+
+const authLink = setContext((_, { headers }) => {
+  const token = TokenHelpers.getAuthToken()
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `bearer ${token}` : null,
+    }
+  }
+})
+
+const httpLink = new createHttpLink({ uri: 'http://localhost:5000/graphql' })
 
 
 const apolloClient = new ApolloClient({
-  uri: "http://localhost:5000/graphql",
+  cache: new InMemoryCache(),
+  link: authLink.concat(httpLink)
 })
 
 
 export default class App extends Component {
   constructor() {
     super()
-    this.state = {
-
-    }
+    // this.state = {
+    //   token: TokenHelpers.getAuthToken(),
+      
+    //   setToken: () => {
+    //     let someToken = TokenHelpers.getAuthToken()
+        
+    //     this.setState({
+    //       token: someToken
+    //     })
+    //   }
+    // }
   }
 
   renderMainRoutes() {
@@ -59,6 +81,9 @@ export default class App extends Component {
         <Route
           path="/home"
           render={routeProps => {
+            if (!TokenHelpers.hasAuthToken()) {
+              return <Redirect to="/" />
+            }
             return <Home {...routeProps} />
           }}
         />
@@ -66,6 +91,9 @@ export default class App extends Component {
         <Route
           path="/add-habit"
           render={routeProps => {
+            if (!TokenHelpers.hasAuthToken()) {
+              return <Redirect to="/" />
+            }
             return <AddHabit {...routeProps} />
           }}
         />
@@ -73,13 +101,19 @@ export default class App extends Component {
         <Route
           path="/profile"
           render={routeProps => {
+            if (!TokenHelpers.hasAuthToken()) {
+              return <Redirect to="/" />
+            }
             return <Profile {...routeProps} />
           }}
         />
 
         <Route
-          path="/habit"
+          path="/habit/:id"
           render={routeProps => {
+            if (!TokenHelpers.hasAuthToken()) {
+              return <Redirect to="/" />
+            }
             return <Habit {...routeProps} />
           }}
         />
@@ -87,6 +121,9 @@ export default class App extends Component {
         <Route
           path="/edit-habit"
           render={routeProps => {
+            if (!TokenHelpers.hasAuthToken()) {
+              return <Redirect to="/" />
+            }
             return <EditHabit {...routeProps} />
           }}
         />
@@ -94,14 +131,10 @@ export default class App extends Component {
         <Route
           path="/settings"
           render={routeProps => {
+            if (!TokenHelpers.hasAuthToken()) {
+              return <Redirect to="/" />
+            }
             return <Settings {...routeProps} />
-          }}
-        />
-
-        <Route
-          path="/book"
-          render={routeProps => {
-            return <Book {...routeProps} />
           }}
         />
       </>

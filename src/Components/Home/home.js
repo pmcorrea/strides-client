@@ -5,136 +5,44 @@ import HomeIcon from "../../Assets/home-icon.svg"
 import PlusIcon from "../../Assets/plus-icon.svg"
 import ProfileIcon from "../../Assets/profile-icon.svg"
 
-
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
+import { habits, habitsByUser } from '../../Queries/queries'
 
 import "./home.css"
 
-export default function Home() {
-	// const [count, setCount] = useState(0);
 
-	return (
+export default function Home() {
+
+	const { loading, data } = useQuery(habitsByUser)
+	
+
+	return loading ? (" ") : (
 		<div>
 			<ul>
-				<li>
-					<div className="habit-tool-bar">
-						<p>To Do</p>
+				{(data === undefined) ? (" ") : 
 
-						<div>
-							<button>log</button>
-							<button>
-								<Link to="/habit">
-									...
-								</Link>
-							</button>
+					data['habitsByUser'].map((item) => (
+					<li key={item.id}>
+						<div className="habit-tool-bar">
+							<p>{item.title}</p>
+
+							<div>
+								<button>log</button>
+								<button>
+									<Link to={`/habit/${item.id}`}>
+										...
+									</Link>
+								</button>
+							</div>
 						</div>
-					</div>
 
-					<p>everyday</p>
-					<div className="progress-bar">
-						<div className="progress-bar-fill"></div>
-					</div>
-				</li>
-
-				<li>
-					<div className="habit-tool-bar">
-						<p>To Do</p>
-
-						<div>
-							<button>log</button>
-							<button>
-								<Link to="/habit">
-									...
-								</Link>
-							</button>
+						<p>everyday</p>
+						<div className="progress-bar">
+							<div className="progress-bar-fill"></div>
 						</div>
-					</div>
-
-					<p>everyday</p>
-					<div className="progress-bar">
-						<div className="progress-bar-fill"></div>
-					</div>
-				</li>
-
-				<li>
-					<div className="habit-tool-bar">
-						<p>To Do</p>
-
-						<div>
-							<button>log</button>
-							<button>
-								<Link to="/habit">
-									...
-								</Link>
-							</button>
-						</div>
-					</div>
-
-					<p>everyday</p>
-					<div className="progress-bar">
-						<div className="progress-bar-fill"></div>
-					</div>
-				</li>
-
-				<li>
-					<div className="habit-tool-bar">
-						<p>To Do</p>
-
-						<div>
-							<button>log</button>
-							<button>
-								<Link to="/habit">
-									...
-								</Link>
-							</button>
-						</div>
-					</div>
-
-					<p>everyday</p>
-					<div className="progress-bar">
-						<div className="progress-bar-fill"></div>
-					</div>
-				</li>
-
-				<li>
-					<div className="habit-tool-bar">
-						<p>To Do</p>
-
-						<div>
-							<button>log</button>
-							<button>
-								<Link to="/habit">
-									...
-								</Link>
-							</button>
-						</div>
-					</div>
-
-					<p>everyday</p>
-					<div className="progress-bar">
-						<div className="progress-bar-fill"></div>
-					</div>
-				</li>
-
-				<li>
-					<div className="habit-tool-bar">
-						<p>To Do</p>
-
-						<div>
-							<button>log</button>
-							<button>
-								<Link to="/habit">
-									...
-								</Link>
-							</button>
-						</div>
-					</div>
-
-					<p>everyday</p>
-					<div className="progress-bar">
-						<div className="progress-bar-fill"></div>
-					</div>
-				</li>
-
+					</li>
+				)
+				)}
 			</ul>
 
 			<div className="bottom-toolbar">

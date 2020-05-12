@@ -3,9 +3,17 @@ import { Route, Link, Redirect } from "react-router-dom";
 
 import "./settings.css"
 import BackArrowButton from "../../Assets/back.svg"
+import TokenHelpers from "../../Services/token-helpers"
+import { useApolloClient } from '@apollo/client'
 
 export default function Settings() {
 	// const [count, setCount] = useState(0);
+	const client = useApolloClient()
+
+	function logOut() {
+		TokenHelpers.clearAuthToken()
+		client.resetStore()
+	}
 
 	return (
 		<div>
@@ -18,7 +26,9 @@ export default function Settings() {
 
 					<h3>
 						<Link to="/">
-							Logout
+							<button onClick={() => logOut()}>
+								Logout
+							</button>
 						</Link>	
 					</h3>
 			</div>

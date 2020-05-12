@@ -4,7 +4,13 @@ import { Route, Link, Redirect } from "react-router-dom";
 import "./edit-habit.css"
 import BackArrowButton from "../../Assets/back.svg"
 
-export default function EditHabit() {
+
+
+export default function EditHabit(routeProps) {
+	
+	
+
+
 	const [habit, setHabit] = useState('');
 
 	const [sunday, setSunday] = useState(false);
@@ -48,19 +54,15 @@ export default function EditHabit() {
 	function handleSubmit(e) {
 		e.preventDefault()
 
-		let body = {
-			habit: habit,
-			days: [sunday, monday, tuesday, wednesday, thursday, friday, saturday]
-		}
-
-		console.log(body)
 	}
+
+
 
 	return (
 		<div>
-			<Link to="/habit">
+			<button onClick={() => routeProps.history.goBack()}>
 				<img src={BackArrowButton} alt="" className="edit-icon add-margin" />
-			</Link>	
+			</button>
 
 			<form action="" className="add-habit-form" onSubmit={(e) => handleSubmit(e)}>
 				<p>I want to</p>
