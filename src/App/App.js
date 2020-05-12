@@ -119,7 +119,7 @@ export default class App extends Component {
         />
 
         <Route
-          path="/edit-habit"
+          path="/edit-habit/:id"
           render={routeProps => {
             if (!TokenHelpers.hasAuthToken()) {
               return <Redirect to="/" />

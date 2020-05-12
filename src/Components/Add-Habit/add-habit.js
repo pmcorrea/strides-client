@@ -83,6 +83,7 @@ export default function AddHabit(routeProps) {
 	function handleSubmit(e) {
 		e.preventDefault()
 		createHabit()
+		routeProps.history.goBack()
 	}
 
 	return (
@@ -139,9 +140,7 @@ export default function AddHabit(routeProps) {
 
 					
 						<button type="submit">
-							<Link to="/home">
 								Submit
-							</Link>
 						</button>
 					
 			</form>

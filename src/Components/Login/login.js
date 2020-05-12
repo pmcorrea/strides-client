@@ -11,51 +11,43 @@ export default function Login(routeProps) {
 	const [stateUsername, setUsername] = useState('');
 	const [statePassword, setPassword] = useState('');
 	
-	const [loadUser, { loading, data, error }] = useLazyQuery(
-		loginUser,
-		{ variables: { 
-			user_name: stateUsername, 
-			user_password: statePassword 
-		}});
+	const [loadUser, { loading, data, error }] = useLazyQuery(loginUser);
 	
-	
-	if (loading || loading === undefined) {
-		// console.log('loading...')
-	} else if (error) {
+	if (error) {
 		console.log(error.message)
 	} else if (data) {
-		console.log(data["loginUser"]["token"])
 		TokenHelpers.clearAuthToken()
 		TokenHelpers.saveAuthToken(data["loginUser"]["token"])
 		routeProps.history.push("/home")		
-	} 
+	} else {
+
+	}
 
 	function handleSubmit(e) {
 		e.preventDefault()	
-		loadUser()
+		loadUser({
+			variables: {
+				user_name: stateUsername,
+				user_password: statePassword
+			}
+		})
 	}
 
 	return (
-
 		<div data-testid="login-test-container">
 			<h1 data-testid="login-h1-test-container">Strides</h1>
 
 			<form action="" onSubmit={(e) => handleSubmit(e)} className="login-form">
 				<input name="username" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
 				<input name="password" type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
-
 					<div>
 						<button type='submit'>
-						
-								Login
-							
+							Login
 						</button>
 
-						
-							<Link to="/register">
-								Register
-							</Link>
-						
+						<Link to="/register">
+							Register
+						</Link>	
 					</div>
 			</form>		
 		</div>

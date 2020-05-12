@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Route, Link, Redirect } from "react-router-dom";
 
 import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
-import { habitById, logHabit } from '../../Queries/queries'
+import { habitById, logHabit, deleteHabit, habitsByUser } from '../../Queries/queries'
 
 import "./habit.css"
 import BackArrowButton from "../../Assets/back.svg"
@@ -74,6 +74,25 @@ export default function Habit(routeProps) {
 		return days
 	}
 
+	const [deleteHabitMutation, { loadingDeleteHabit, dataDeleteHabit, errorHabitDelete}] = useMutation(
+		deleteHabit,
+		{
+			variables: {
+				id: habitId
+			},
+			onError: (errorHabitDelete) => {
+				console.log(errorHabitDelete.graphQLErrors[0].message)
+				setError(`${errorHabitDelete.graphQLErrors[0].message}`)
+			},
+			refetchQueries: [{
+				query: habitsByUser,
+				variables: {
+					id: routeProps.match.params.id.toString()
+				}
+			}]
+		}
+	)
+
 	const [createLog, { loadinglogDay, datalogday, error }] = useMutation(
 		logHabit,
 		{
@@ -104,6 +123,11 @@ export default function Habit(routeProps) {
 		createLog()
 	}
 
+	function handleHabitDelete() {
+		deleteHabitMutation()
+		routeProps.history.goBack()
+	}
+
 	return data ? (
 		<div>
 			<div className="habit-container">
@@ -113,7 +137,7 @@ export default function Habit(routeProps) {
 					</Link>
 
 					<button className="no-margin">
-						<Link to="/edit-habit">
+						<Link to={`/edit-habit/${routeProps.match.params.id}`}>
 							<img src={EditButton} alt="" className="edit-icon" />
 						</Link>
 					</button>
@@ -173,7 +197,7 @@ export default function Habit(routeProps) {
 					</div>
 				</div>
 
-				<button className="delete-button">
+				<button className="delete-button" onClick={() => handleHabitDelete()}>
 					<p>Delete</p>
 				</button>
 			</div>

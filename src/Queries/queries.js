@@ -110,13 +110,20 @@ const habitsByUser = gql`
 query habitsByUser{
 	habitsByUser {
 		id
-    	title
+		title
+		sunday
+		monday
+		tuesday
+		wednesday
+		thursday
+		friday
+		saturday
 	}
 }
 `
 
 const loginUser = gql`
-query loginUser($user_name: String, $user_password: String) {
+query loginUser($user_name: String!, $user_password: String!) {
 	loginUser(user_name: $user_name, user_password: $user_password) {
 		id
 		user_name
@@ -161,14 +168,50 @@ const addHabit = gql`
 `
 
 const logHabit = gql`
-mutation logHabit($id: String!, $column: String!) {
-	logHabit(id: $id, column: $column) {
-		id
-		title
+	mutation logHabit($id: String!, $column: String!) {
+		logHabit(id: $id, column: $column) {
+			id
+			title
+		}
 	}
-}
+`
+
+const deleteHabit = gql`
+	mutation deleteHabit($id: String!) {
+		deleteHabit(id: $id) {
+			id
+			title
+		}
+	}
+`
+
+const editHabit = gql`
+	mutation editHabit(
+		$title: String!, 
+		$sunday: Boolean!,
+		$monday: Boolean!,
+		$tuesday: Boolean!,
+		$wednesday: Boolean!,
+		$thursday: Boolean!,
+		$friday: Boolean!,
+		$saturday: Boolean!) {
+			editHabit(
+				title: $title,
+				sunday: $sunday,
+				monday: $monday,
+				tuesday: $tuesday,
+				wednesday: $wednesday,
+				thursday: $thursday,
+				friday: $friday,
+				saturday: $saturday
+					) {
+						id
+						title
+					}
+	}
 `
 
 export {
-	habits, habitsByUser, loginUser, addUser, addHabit, habitById, logHabit
+	habits, habitsByUser, loginUser, addUser, addHabit, habitById, logHabit,
+	deleteHabit, editHabit
 }

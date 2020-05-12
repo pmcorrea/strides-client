@@ -10,6 +10,41 @@ import { habits, habitsByUser } from '../../Queries/queries'
 
 import "./home.css"
 
+function returnDays({ sunday, monday, tuesday, wednesday, thursday, friday, saturday }) {
+	let days = []
+
+	if (sunday === 'true') {
+		days.push('Sunday')
+	}
+
+	if (monday === 'true') {
+		days.push('Monday')
+	}
+
+	if (tuesday === 'true') {
+		days.push('Tuesday')
+	}
+
+	if (wednesday === 'true') {
+		days.push('Wednesday')
+	}
+
+	if (thursday === 'true') {
+		days.push('Thursday')
+	}
+
+	if (friday === 'true') {
+		days.push('Friday')
+	}
+
+	if (saturday === 'true') {
+		days.push('Saturday')
+	}
+
+	days = days.join(", ")
+	console.log(days)
+	return days
+}
 
 export default function Home() {
 
@@ -36,7 +71,7 @@ export default function Home() {
 							</div>
 						</div>
 
-						<p>everyday</p>
+							<p>{returnDays(item)}</p>
 						<div className="progress-bar">
 							<div className="progress-bar-fill"></div>
 						</div>

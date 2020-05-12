@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Route, Link, Redirect } from "react-router-dom";
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
+import { deleteHabit, habitsByUser, addHabit } from "../../Queries/queries"
 
 import "./edit-habit.css"
 import BackArrowButton from "../../Assets/back.svg"
@@ -7,12 +9,8 @@ import BackArrowButton from "../../Assets/back.svg"
 
 
 export default function EditHabit(routeProps) {
-	
-	
-
-
 	const [habit, setHabit] = useState('');
-
+	const [stateError, setError] = useState(null)
 	const [sunday, setSunday] = useState(false);
 	const [monday, setMonday] = useState(false);
 	const [tuesday, setTuesday] = useState(false);
@@ -20,6 +18,54 @@ export default function EditHabit(routeProps) {
 	const [thursday, setThursday] = useState(false);
 	const [friday, setFriday] = useState(false);
 	const [saturday, setSaturday] = useState(false);
+
+	let habitId = routeProps.match.params.id
+
+	const [deleteHabitMutation, { loadingDeleteHabit, dataDeleteHabit, errorHabitDelete }] = useMutation(
+		deleteHabit,
+		{
+			variables: {
+				id: habitId
+			},
+			onError: (errorHabitDelete) => {
+				console.log(errorHabitDelete.graphQLErrors[0].message)
+				setError(`${errorHabitDelete.graphQLErrors[0].message}`)
+			},
+			refetchQueries: [{
+				query: habitsByUser
+			}]
+		}
+	)
+
+	const [createHabit, { loading, data, error }] = useMutation(
+		addHabit,
+		{
+			variables: {
+				title: habit,
+				sunday: sunday,
+				monday: monday,
+				tuesday: tuesday,
+				wednesday: wednesday,
+				thursday: thursday,
+				friday: friday,
+				saturday: saturday,
+			},
+			onError: (error) => {
+				console.log(error.graphQLErrors[0].message)
+				setError(`${error.graphQLErrors[0].message}`)
+			},
+			refetchQueries: [{ query: habitsByUser }],
+		}
+	)
+
+
+	// if (loading || loading === undefined) {
+	// 	// console.log('loading...')
+	// } else if (error) {
+	// 	console.log('err:', error.graphQLErrors[0].message)
+	// } else if (data) {
+	// 	routeProps.history.push("/home")
+	// }
 
 	function changeDay(value) {
 		if (value === 'sunday') {
@@ -53,10 +99,12 @@ export default function EditHabit(routeProps) {
 
 	function handleSubmit(e) {
 		e.preventDefault()
-
+		// delete habit
+		deleteHabitMutation()
+		// add habit
+		createHabit()
+		routeProps.history.push("/home")
 	}
-
-
 
 	return (
 		<div>
@@ -116,9 +164,9 @@ export default function EditHabit(routeProps) {
 
 
 				<button type="submit">
-					<Link to="/home">
+					
 						Submit
-							</Link>
+				
 				</button>
 
 			</form>
