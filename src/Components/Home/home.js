@@ -6,49 +6,100 @@ import PlusIcon from "../../Assets/plus-icon.svg"
 import ProfileIcon from "../../Assets/profile-icon.svg"
 
 import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
-import { habits, habitsByUser } from '../../Queries/queries'
+import { habitById, logHabit, deleteHabit, habitsByUser } from '../../Queries/queries'
 
 import "./home.css"
+const dateHelper = require('date-fns')
 
 function returnDays({ sunday, monday, tuesday, wednesday, thursday, friday, saturday }) {
 	let days = []
 
 	if (sunday === 'true') {
-		days.push('Sunday')
+		days.push('sun')
 	}
 
 	if (monday === 'true') {
-		days.push('Monday')
+		days.push('mon')
 	}
 
 	if (tuesday === 'true') {
-		days.push('Tuesday')
+		days.push('tue')
 	}
 
 	if (wednesday === 'true') {
-		days.push('Wednesday')
+		days.push('wed')
 	}
 
 	if (thursday === 'true') {
-		days.push('Thursday')
+		days.push('thu')
 	}
 
 	if (friday === 'true') {
-		days.push('Friday')
+		days.push('fri')
 	}
 
 	if (saturday === 'true') {
-		days.push('Saturday')
+		days.push('sat')
 	}
 
 	days = days.join(", ")
-	console.log(days)
 	return days
 }
 
-export default function Home() {
 
+
+	
+
+
+export default function Home() {
+	const [stateError, setError] = useState(null)
 	const { loading, data } = useQuery(habitsByUser)
+
+	const [createLog, { loadinglogDay, datalogday, error }] = useMutation(
+		logHabit,
+		{
+			onError: (error) => {
+				console.log(error)
+				setError(`${error}`)
+			},
+			refetchQueries: [{
+				query: habitsByUser,
+			}]
+		});
+
+	function diff(startDate) {
+		console.log(startDate)
+		let today_iso = new Date().toISOString()
+		let today = dateHelper.parseISO(today_iso)
+		startDate = dateHelper.parseISO(startDate)
+
+		let diff = dateHelper.differenceInCalendarDays(
+			today,
+			startDate
+		)
+
+		diff = diff.toString()
+		return diff
+	}
+
+	function progressBarPercentage(someDate) {
+
+		let today_iso = new Date().toISOString()
+		let today = dateHelper.parseISO(today_iso)
+		let startDate = dateHelper.parseISO(someDate)
+
+		let diffProgress = dateHelper.differenceInCalendarDays(
+			today,
+			startDate
+		)
+
+
+		if (diffProgress >= 30) {
+			return 100
+		} else if (diffProgress < 30) {
+			return ((diffProgress) / 30) * 100
+		}
+	}
 	
 
 	return loading ? (" ") : (
@@ -62,7 +113,14 @@ export default function Home() {
 							<p>{item.title}</p>
 
 							<div>
-								<button>log</button>
+									<button onClick={() => createLog({
+										variables: {
+										id: `${item.id}`,
+										column: diff(item.habit_start_date),
+										current_streak: item.current_streak,
+										last_log: item.last_log,
+										highest_streak: item.highest_streak
+										}})}>log</button>
 								<button>
 									<Link to={`/habit/${item.id}`}>
 										...
@@ -73,7 +131,9 @@ export default function Home() {
 
 							<p>{returnDays(item)}</p>
 						<div className="progress-bar">
-							<div className="progress-bar-fill"></div>
+								<div className="progress-bar-fill" style={{
+									width: `${progressBarPercentage(item.habit_start_date)}%`
+								}}></div>
 						</div>
 					</li>
 				)

@@ -72,6 +72,9 @@ query habitById ($id: String!){
 			logged_missed
 			logged_total
 			habit_start_date
+			last_log
+			current_streak
+			highest_streak
 			day0
 			day1
 			day2
@@ -118,6 +121,10 @@ query habitsByUser{
 		thursday
 		friday
 		saturday
+		current_streak
+		last_log
+		highest_streak
+		habit_start_date
 	}
 }
 `
@@ -168,8 +175,8 @@ const addHabit = gql`
 `
 
 const logHabit = gql`
-	mutation logHabit($id: String!, $column: String!) {
-		logHabit(id: $id, column: $column) {
+	mutation logHabit($id: String!, $column: String!, $current_streak: Int!, $last_log: String, $highest_streak: Int!) {
+		logHabit(id: $id, column: $column, current_streak: $current_streak, last_log: $last_log, highest_streak: $highest_streak) {
 			id
 			title
 		}
@@ -211,7 +218,60 @@ const editHabit = gql`
 	}
 `
 
+const userById = gql`
+	query userById {
+		userById {
+			user_name
+			avatar
+			logged_total
+			habits_done
+			perfect_habits 
+			biggest_streak
+		}
+	}
+`
+
+const logged_total = gql`
+	mutation logged_total($value: String!) {
+		logged_total(value: $value) {
+			id
+			user_name
+			logged_total
+		}
+	}
+`
+
+const perfect_habits = gql`
+	mutation perfect_habits($value: String!) {
+		perfect_habits(value: $value) {
+			id
+			user_name
+			perfect_habits
+		}
+	}
+`
+
+const biggest_streak = gql`
+	mutation biggest_streak($value: String!) {
+		biggest_streak(value: $value) {
+			id
+			user_name
+			biggest_streak
+		}
+	}
+`
+
+const habits_done = gql`
+	mutation habits_done($value: String!) {
+		habits_done(value: $value) {
+			id
+			user_name
+			habits_done
+		}
+	}
+`
+
 export {
 	habits, habitsByUser, loginUser, addUser, addHabit, habitById, logHabit,
-	deleteHabit, editHabit
+	deleteHabit, editHabit, userById, habits_done, perfect_habits, biggest_streak, logged_total
 }

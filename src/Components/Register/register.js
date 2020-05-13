@@ -20,7 +20,6 @@ export default function Register(routeProps) {
 				user_password: statePassword
 			},
 			onError: (error) => {
-				console.log(error.graphQLErrors[0].message)
 				setError(`${error.graphQLErrors[0].message}`)
 			}
 		}
@@ -31,7 +30,6 @@ export default function Register(routeProps) {
 	} else if (error) {
 		console.log('err:', error.graphQLErrors[0].message)	
 	} else if (data) {
-		console.log(data["addUser"])
 		routeProps.history.push("/")		
 	}
 

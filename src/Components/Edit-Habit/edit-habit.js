@@ -108,7 +108,7 @@ export default function EditHabit(routeProps) {
 
 	return (
 		<div>
-			<button onClick={() => routeProps.history.goBack()}>
+			<button class="noBorderNoBackground" onClick={() => routeProps.history.goBack()}>
 				<img src={BackArrowButton} alt="" className="edit-icon add-margin" />
 			</button>
 

@@ -47,3 +47,8 @@
 	font-weight: 700;
 	color: white;
 }
+
+.noBorderNoBackground {
+	background-color: transparent;
+    border: none;
+}

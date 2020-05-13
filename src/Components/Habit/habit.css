@@ -233,3 +233,62 @@
 .completion-container>p {
 	font-weight: 700;
 }
+
+
+.parent{
+	max-width: 400px;
+	display: block;
+	/* flex-direction: row;
+	justify-content: flex-start;
+	align-items: center; */
+
+	margin: 20px auto;
+	padding: 10px 0px;
+	/* border: black solid 2px; */
+	border-radius: 15px;
+	height: 100px;
+	background-color: white;
+	box-shadow: 0px 5px 10px rgb(0, 0, 0);
+}
+
+.parent>p {
+	color: black;
+}
+
+.child {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	overflow: scroll;
+	margin: 0px;
+}
+
+.parent>.child>li {
+	border: 1px solid black;
+	min-width: 50px;
+	min-height: 50px;
+	margin: 5px;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	box-shadow: none;
+	background-image: none;
+	color: black;
+}
+
+.item>p {
+	color: black;
+	font-weight: 700;
+}
+
+.true {
+	background-color: rgb(45, 209, 45);
+}
+
+.false {
+	background-color: lightgray;
+}
+

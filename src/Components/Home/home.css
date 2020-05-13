@@ -73,7 +73,7 @@ li>p {
 
 .progress-bar-fill {
 	background-color: rgb(45, 209, 45);
-	width: 30%;
+	/* width: 30%; */
 	height: 10px;
 	margin: 0px;
 	border-radius: 5px;
