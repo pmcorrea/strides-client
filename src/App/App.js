@@ -23,7 +23,7 @@ import ProfileIcon from "../Assets/profile-icon.svg"
 
 import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from "apollo-link-context";
-
+import config from '../config'
 
 const authLink = setContext((_, { headers }) => {
   const token = TokenHelpers.getAuthToken()
@@ -35,7 +35,7 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
-const httpLink = new createHttpLink({ uri: 'https://strides.now.sh/graphql' })
+const httpLink = new createHttpLink({ uri: `${config.API_ENDPOINT}` })
 
 
 const apolloClient = new ApolloClient({
