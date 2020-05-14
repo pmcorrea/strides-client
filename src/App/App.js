@@ -40,8 +40,7 @@ const httpLink = new createHttpLink({ uri: `${config.API_ENDPOINT}` })
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
-  link: authLink.concat(httpLink),
-  credentials: 'include'
+  link: authLink.concat(httpLink)
 })
 
 
