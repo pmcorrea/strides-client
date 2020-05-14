@@ -35,7 +35,7 @@ const authLink = setContext((_, { headers }) => {
   }
 })
 
-const httpLink = new createHttpLink({ uri: 'http://localhost:5000/graphql' })
+const httpLink = new createHttpLink({ uri: 'https://strides.now.sh/graphql' })
 
 
 const apolloClient = new ApolloClient({
