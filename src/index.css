@@ -13,6 +13,11 @@
 :root {
 	--button-font-size: .8rem;
 	--input-font-size: 1.2rem;
+	--custom-white: #F2F7FF;
+	--custom-blue: #0B409C;
+	--custom-darkblue: #0D226B;
+	--custom-orange: #FDBE34;
+	--custom-green: #1bbf02;
 }
 
 a {
@@ -33,9 +38,10 @@ html {
 	font-size: 16px;
 	width: 100vw;
 	min-height: 100vh;
-	background-image: url("background.jpg");
+	/* background-image: url("./Assets/background.jpg");
 	background-size: cover;
-	background-attachment: fixed;
+	background-attachment: fixed; */
+	background-color: var(--custom-white);
 }
 
 body {
@@ -59,21 +65,23 @@ h1 {
 	text-align: center;
 	padding: 10px;
 	font-size: 2.5rem;
-	color: white;
+	color: var(--custom-darkblue);
 }
 
 h2 {
-	font-size: 1.5rem;
-	color: white;
-	margin: 0px;
+	font-size: 2rem;
+	color: var(--custom-darkblue);
+	margin: 20px 0px;
+
 }
 
 h3 {
 	margin: 0px;
+	color: var(--custom-darkblue);
 }
 
 p {
 	font-size: 1rem;
-	color: white;
+	color: var(--custom-darkblue);
 	margin: 0;
 }

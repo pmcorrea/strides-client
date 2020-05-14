@@ -11,26 +11,55 @@ form {
 	align-items: center;
 }
 
+.input-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	margin-bottom: 10px;
+}
+
+label, input {
+	transition: 0.4s ease;
+}
+
+label {
+	color: var(--custom-darkblue);
+	transform: translate(4px, 20px) scale(1.10);
+	transform-origin: left top;
+	position: absolute;
+	cursor: text;
+	font-weight: 300;
+}
+
 input {
 	width: 100%;
 	height: 2.5rem;
 	padding: 5px;
-	margin: 5px 0px;
+	margin: 10px 0px;
 	
-	background-color: white;
+	background-color: transparent;
 	border-top: none;
 	border-left: none;
 	border-right: none;
-	border-bottom: solid white 2px;
+	border-bottom: solid var(--custom-darkblue) 1px;
 	font-size: var(--input-font-size);
-	color: black;
-
+	color: var(--custom-darkblue);
+	
 }
 
+input:focus {
+	border-bottom: solid var(--custom-darkblue) 3px;
+}
 
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label{
+	transform: translate(0px, -10px) scale(0.8);
+}
 
 input::placeholder {
 	color: gray;
+	opacity: 0;
 }
 
 form>div {
@@ -46,24 +75,24 @@ form>div {
 .login-form>div>button, .login-form>div>a {
 	width: 45%;
 	margin: 5px 0px;
-	color: white;
+	color: var(--custom-darkblue);
 	background-color: transparent;
 	font-size: var(--button-font-size);
 	font-weight: 700;
 	padding: 5px;
-	border: solid white 2px;
+	border: solid var(--custom-darkblue) 2px;
 	border-radius: 15px;
 	text-align: center;
 	cursor: pointer;
 }
 
 .login-form>div>button:hover, .login-form>div>a:hover {
-	color: black;
-	background-color: white;
-	border: solid white 2px;
+	color: var(--custom-white);
+	background-color: var(--custom-darkblue);
+	border: solid var(--custom-darkblue) 2px;
 }
 
 .login-form>a:visited {
-	color: white;
+	color: var(--custom-darkblue);
 }
 

@@ -1,5 +1,13 @@
 import { gql } from 'apollo-boost'
 
+const getUserByName = gql`
+	query getUserByName($user_name: String!){
+		getUserByName(user_name: $user_name) {
+			user_name
+		}
+	}
+`
+
 const habits = gql`
 	{
 		habits {
@@ -19,6 +27,8 @@ const habits = gql`
 			logged_missed
 			logged_total
 			habit_start_date
+			perfect_streak
+			last_scheduled_logged
 			day0
 			day1
 			day2
@@ -75,6 +85,8 @@ query habitById ($id: String!){
 			last_log
 			current_streak
 			highest_streak
+			perfect_streak
+			last_scheduled_logged
 			day0
 			day1
 			day2
@@ -125,6 +137,8 @@ query habitsByUser{
 		last_log
 		highest_streak
 		habit_start_date
+		perfect_streak
+		last_scheduled_logged
 	}
 }
 `
@@ -175,8 +189,10 @@ const addHabit = gql`
 `
 
 const logHabit = gql`
-	mutation logHabit($id: String!, $column: String!, $current_streak: Int!, $last_log: String, $highest_streak: Int!) {
-		logHabit(id: $id, column: $column, current_streak: $current_streak, last_log: $last_log, highest_streak: $highest_streak) {
+	mutation logHabit($id: String!, $column: String!, $current_streak: Int!, $last_log: String, $highest_streak: Int!,
+		$habit_start_date: String!, $perfect_streak: String, $last_scheduled_logged: String, $sunday: String!, $monday: String!, $tuesday: String!, $wednesday: String!, $thursday: String!, $friday: String!, $saturday: String!) {
+		logHabit(id: $id, column: $column, current_streak: $current_streak, last_log: $last_log, highest_streak: $highest_streak,
+			habit_start_date: $habit_start_date, perfect_streak: $perfect_streak, last_scheduled_logged: $last_scheduled_logged, sunday: $sunday, monday: $monday, tuesday: $tuesday, wednesday: $wednesday, thursday: $thursday, friday: $friday, saturday: $saturday) {
 			id
 			title
 		}
@@ -273,5 +289,5 @@ const habits_done = gql`
 
 export {
 	habits, habitsByUser, loginUser, addUser, addHabit, habitById, logHabit,
-	deleteHabit, editHabit, userById, habits_done, perfect_habits, biggest_streak, logged_total
+	deleteHabit, editHabit, userById, habits_done, perfect_habits, biggest_streak, logged_total, getUserByName
 }

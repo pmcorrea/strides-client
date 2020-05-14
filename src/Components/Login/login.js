@@ -38,8 +38,16 @@ export default function Login(routeProps) {
 			<h1 data-testid="login-h1-test-container">Strides</h1>
 
 			<form action="" onSubmit={(e) => handleSubmit(e)} className="login-form">
-				<input name="username" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
-				<input name="password" type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}/>
+				<div className="input-container">
+					<input name="username" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
+					<label htmlFor="username">username</label>
+				</div>
+
+				<div className="input-container">
+					<input name="password" type="password" placeholder="username" onChange={(e) => setPassword(e.target.value)}/>
+					<label htmlFor="password">password</label>
+				
+				</div>
 					<div>
 						<button type='submit'>
 							Login

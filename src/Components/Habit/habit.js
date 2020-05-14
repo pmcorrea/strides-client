@@ -8,6 +8,7 @@ import "./habit.css"
 import BackArrowButton from "../../Assets/back.svg"
 import EditButton from '../../Assets/edit.svg'
 import CheckmarkButton from '../../Assets/checkmark.svg'
+import NotCheckmarkButton from '../../Assets/not-checkmark.svg'
 
 const dateHelper = require('date-fns')
 
@@ -22,12 +23,22 @@ export default function Habit(routeProps) {
 	})
 	
 	let diff;
+	let startDate;
 	let current_streak;
 	let last_log;
 	let highest_streak;
+	let perfect_streak;
+	let sunday;
+	let monday;
+	let tuesday;
+	let wednesday;
+	let thursday;
+	let friday;
+	let saturday;
+	let last_scheduled_logged;
 
 	if (data) {
-		let startDate = data["habitById"]["habit_start_date"]
+		startDate = data["habitById"]["habit_start_date"]
 
 		let today_iso = new Date().toISOString()
 		let today = dateHelper.parseISO(today_iso)
@@ -40,8 +51,17 @@ export default function Habit(routeProps) {
 
 		diff = diff.toString()
 		current_streak = data["habitById"]["current_streak"]
+		perfect_streak = data["habitById"]["perfect_streak"]
 		last_log = data["habitById"]["last_log"]
 		highest_streak = data["habitById"]["highest_streak"]
+		sunday = data["habitById"]["sunday"]
+		monday = data["habitById"]["monday"]
+		tuesday = data["habitById"]["tuesday"]
+		wednesday = data["habitById"]["wednesday"]
+		thursday = data["habitById"]["thursday"]
+		friday = data["habitById"]["friday"]
+		saturday = data["habitById"]["saturday"]
+		last_scheduled_logged = data["habitById"]["last_scheduled_logged"]
 	}
 
 	function daysLeft(someStartDate) {
@@ -147,7 +167,18 @@ export default function Habit(routeProps) {
 				column: diff,
 				current_streak: current_streak,
 				last_log: last_log,
-				highest_streak: highest_streak
+				highest_streak: highest_streak,
+
+				habit_start_date: startDate,
+				perfect_streak: perfect_streak,
+				sunday: sunday,
+				monday: monday,
+				tuesday: tuesday,
+				wednesday: wednesday,
+				thursday: thursday,
+				friday: friday,
+				saturday: saturday,
+				last_scheduled_logged: last_scheduled_logged
 			},
 			onError: (error) => {
 				console.log(error)
@@ -173,6 +204,13 @@ export default function Habit(routeProps) {
 		routeProps.history.goBack()
 	}
 
+	function loggedToday(date) {
+		let last_logged = dateHelper.parseISO(date)
+		let value = dateHelper.isToday(last_logged)
+
+		return value
+	}
+
 	return loading ? (" ") : (
 		<div>
 			<div className="habit-container">
@@ -188,9 +226,15 @@ export default function Habit(routeProps) {
 						</Link>
 					</button>
 
+					{loggedToday(last_log) 
+					? 
 					<button className="no-margin" type="button" onClick={() => createLog()}>	
 						<img src={CheckmarkButton} alt="" className="edit-icon" />
 					</button>
+					:
+					<button className="no-margin" type="button" onClick={() => createLog()}>
+						<img src={NotCheckmarkButton} alt="" className="edit-icon" />
+					</button>}
 					</div>
 				</div>
 

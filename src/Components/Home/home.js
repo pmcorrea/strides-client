@@ -42,6 +42,14 @@ function returnDays({ sunday, monday, tuesday, wednesday, thursday, friday, satu
 		days.push('sat')
 	}
 
+	if (days.length === 7) {
+		return "everyday"
+	}
+
+	if (days.length === 0) {
+		return "any day"
+	}
+
 	days = days.join(", ")
 	return days
 }
@@ -113,13 +121,24 @@ export default function Home() {
 							<p>{item.title}</p>
 
 							<div>
-									<button onClick={() => createLog({
+									<button className="cursor" onClick={() => createLog({
 										variables: {
 										id: `${item.id}`,
 										column: diff(item.habit_start_date),
 										current_streak: item.current_streak,
 										last_log: item.last_log,
-										highest_streak: item.highest_streak
+										highest_streak: item.highest_streak,
+
+										habit_start_date: item.habit_start_date,
+										perfect_streak: item.perfect_streak,
+										sunday: item.sunday,
+										monday: item.monday,
+										tuesday: item.tuesday,
+										wednesday: item.wednesday,
+										thursday: item.thursday,
+										friday: item.friday,
+										saturday: item.saturday,
+										last_scheduled_logged: item.last_scheduled_logged
 										}})}>log</button>
 								<button>
 									<Link to={`/habit/${item.id}`}>

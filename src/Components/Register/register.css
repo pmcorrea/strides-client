@@ -1,21 +1,21 @@
 .registration-form>div>button, .registration-form>div>a {
 	width: 45%;
 	margin: 5px 0px;
-	color: white;
+	color: var(--custom-darkblue);
 	background-color: transparent;
 	font-size: var(--button-font-size);
 	font-weight: 700;
 	padding: 5px;
-	border: solid white 2px;
+	border: solid var(--custom-darkblue) 2px;
 	border-radius: 15px;
 	text-align: center;
 	cursor: pointer;
 }
 
 .registration-form>div>button:hover, .registration-form>div>a:hover {
-	color: black;
-	background-color: white;
-	border: solid white 2px;
+	color: var(--custom-white);
+	background-color: var(--custom-darkblue);
+	border: solid var(--custom-darkblue) 2px;
 }
 
 .registration-form>a:visited {
@@ -24,6 +24,16 @@
 
 
 
-.registration-form {
+.registration-form>div>button:disabled {
+	border-color: lightgray;
+	color: lightgray;
+}
 
+.password-reqs {
+	width: 200px;
+	margin: 10px 0px;
+}
+.password-reqs>p{
+	font-weight: 300;
+	font-size: .8rem;
 }

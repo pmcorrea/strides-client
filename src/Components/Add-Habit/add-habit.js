@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+
 import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
 import { addHabit, habitsByUser } from "../../Queries/queries"
 
@@ -8,6 +9,7 @@ import PlusIcon from "../../Assets/plus-icon.svg"
 import ProfileIcon from "../../Assets/profile-icon.svg"
 
 import "./add-habit.css"
+const xss = require('xss')
 
 export default function AddHabit(routeProps) {
 	const [habit, setHabit] = useState('');
@@ -90,48 +92,48 @@ export default function AddHabit(routeProps) {
 		<div>
 			<form action="" className="add-habit-form" onSubmit={(e) => handleSubmit(e)}>
 				<p>I want to</p>
-				<input name="habit" type="text" placeholder="meditate" onChange={(e) => setHabit(e.target.value.toString())}/>
+				<input name="habit" type="text" placeholder="meditate" onChange={(e) => setHabit(xss(e.target.value.toString()))}/>
 					<p>every</p>
 
 					<div>
 					<button type="button" value='sunday' className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
-						backgroundColor: sunday ? 'black' : 'white',
+						backgroundColor: sunday ? 'var(--custom-darkblue)' : 'var(--custom-orange)',
 						color: sunday ? 'white' : 'black',
 						border: sunday ? 'none': 'none'
 					}}>S</button>
 
 					<button type="button" value="monday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
-						backgroundColor: monday ? 'black' : 'white',
+						backgroundColor: monday ? 'var(--custom-darkblue)' : 'var(--custom-orange)',
 						color: monday ? 'white' : 'black',
 						border: monday ? 'none' : 'none'
 					}}>M</button>
 
 					<button type="button" value="tuesday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
-						backgroundColor: tuesday ? 'black' : 'white',
+						backgroundColor: tuesday ? 'var(--custom-darkblue)' : 'var(--custom-orange)',
 						color: tuesday ? 'white' : 'black',
 						border: tuesday ? 'none' : 'none'
 					}}>T</button>
 
 					<button type="button" value="wednesday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
-						backgroundColor: wednesday ? 'black' : 'white',
+						backgroundColor: wednesday ? 'var(--custom-darkblue)' : 'var(--custom-orange)',
 						color: wednesday ? 'white' : 'black',
 						border: wednesday ? 'none' : 'none'
 					}}>W</button>
 
 					<button type="button" value="thursday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
-						backgroundColor: thursday ? 'black' : 'white',
+						backgroundColor: thursday ? 'var(--custom-darkblue)' : 'var(--custom-orange)',
 						color: thursday ? 'white' : 'black',
 						border: thursday ? 'none' : 'none'
 					}}>T</button>
 
 					<button type="button" value="friday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
-						backgroundColor: friday ? 'black' : 'white',
+						backgroundColor: friday ? 'var(--custom-darkblue)' : 'var(--custom-orange)',
 						color: friday ? 'white' : 'black',
 						border: friday ? 'none' : 'none'
 					}}>F</button>
 
 					<button type="button" value="saturday" className="circle-button-s" onClick={(e) => changeDay(e.target.value)} style={{
-						backgroundColor: saturday ? 'black' : 'white',
+						backgroundColor: saturday ? 'var(--custom-darkblue)' : 'var(--custom-orange)',
 						color: saturday ? 'white' : 'black',
 						border: saturday ? 'none' : 'none'
 					}}>S</button>

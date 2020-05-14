@@ -22,7 +22,17 @@
 
 .settings-container>p {
 	color: black;
-	font-weight: 700;
+	font-weight: 300;
+}
+
+.logout-button {
+	background-color: transparent;
+	border: none;
+}
+
+.mailto{
+	color: var(--custom-darkblue);
+	
 }
 
 

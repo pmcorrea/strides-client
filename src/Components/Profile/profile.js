@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 import "./profile.css"
-import Gear from "../../Assets/gear.svg"
-import Avatar from 	"../../Assets/avatar.jpg"
+import Gear from "../../Assets/settings.svg"
+import Avatar from 	"../../Assets/avatar.svg"
+import Logout from "../../Assets/logout.svg"
 
 import HomeIcon from "../../Assets/home-icon.svg"
 import PlusIcon from "../../Assets/plus-icon.svg"
@@ -11,10 +12,13 @@ import ProfileIcon from "../../Assets/profile-icon.svg"
 
 import { useQuery } from '@apollo/client'
 import { habitsByUser, userById } from "../../Queries/queries"
+import TokenHelpers from "../../Services/token-helpers"
+import { useApolloClient } from '@apollo/client'
 
 export default function Profile() {
 	const [stateError, setError] = useState(null)
 	const { loading, data, refetch } = useQuery(userById)
+	const client = useApolloClient()
 
 	useEffect(() => {
 		refetch()
@@ -24,20 +28,30 @@ export default function Profile() {
 		return ( " ")
 	}
 
-	
+	function logOut() {
+		TokenHelpers.clearAuthToken()
+		client.resetStore()
+	}
 
 	return (
 		<div>
 			<div className="profile-box">
 				<div className="top-bar">
 					
-					<button className="circle-button"> </button>
+					
+					
 					<button>
 						<Link to="/settings">
 							<img src={Gear} alt="" className="icon-bar-icon" />
 						</Link>
+					</button>
+
+					<Link to="/">
+						<button className="logout-button" onClick={() => logOut()}>
+							<img src={Logout} alt="" className="icon-bar-icon logout-button" />
 						</button>
-			</div>
+					</Link>	
+				</div>
 
 
 					<img src={Avatar} alt="" className="avatar" />

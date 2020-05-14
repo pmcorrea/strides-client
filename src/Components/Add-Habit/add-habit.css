@@ -6,7 +6,7 @@
 	border-radius: 50%;
 	width: 30px;
 	height: 30px;
-	background-color: white;
+	background-color: #F2F7FF;
 	color: black;
 	font-weight: 700;
 }
@@ -27,11 +27,24 @@
 	border-top: none;
 	border-left: none;
 	border-right: none;
-	border-bottom: solid white 2px;
+	border-bottom: solid var(--custom-darkblue) 1px;
+	color: var(--custom-darkblue);
+	transition: 0.4s ease;
+	color:var(--custom-orange);
+	font-size: 1.8rem;
+	font-weight: 800;
+}
+
+.add-habit-form>input::placeholder {
+	color: lightslategray;
+}
+
+.add-habit-form>input:active {
+	border-bottom: solid var(--custom-darkblue) 3px;
 }
 
 .add-habit-form>button {
-	border: white solid 2px;
+	border: var(--custom-darkblue) solid 2px;
     border-radius: 15px;
     background-color: transparent;
     height: 40px;
@@ -41,5 +54,13 @@
 	max-width: 200px;
 	font-size: 1.5rem;
 	font-weight: 700;
-	color: white;
+	color: var(--custom-darkblue);
+}
+
+.custom-orange {
+	background-color: var(--custom-orange);
+}
+
+.custom-darkblue {
+	background-color: var(--custom-darkblue);
 }

@@ -23,7 +23,7 @@
 	/* margin: .5rem auto;
 	padding: .5rem; */
 	margin-top: 10px;
-	background-color: white;
+	background-color: #F2F7FF;
 	border-radius: .5rem;
 	box-shadow: 0px 5px 10px rgb(0, 0, 0);
 
@@ -73,7 +73,7 @@
 }
 
 .progress-bar-fill-profile {
-	background-color: rgb(45, 209, 45);
+	background-color: var(--custom-green);
 	width: 30%;
 	height: 10px;
 	margin: 0px;
@@ -97,7 +97,7 @@
 	color: white;
 	/* background-color: gray; */
 	/* padding: 10px; */
-	margin-bottom: 10px;
+	margin: 20px 0px;
 
 	display: flex;
 	flex-direction: row;
