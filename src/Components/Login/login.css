@@ -40,6 +40,7 @@ input {
 	margin: 10px 0px;
 	
 	background-color: transparent;
+	border-radius: 0;
 	border-top: none;
 	border-left: none;
 	border-right: none;
