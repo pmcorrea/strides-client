@@ -1,10 +1,11 @@
 .settings-container {
 	width: 100%;
-	max-width: 400px;
+	max-width: 288px;
 
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	margin-bottom: 40px;
 
 	/* border: solid black 2px; */
 }

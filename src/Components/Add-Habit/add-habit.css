@@ -14,6 +14,7 @@
 .add-habit-form {
 	padding: 0px;
 	margin-top: 80px;
+	max-width: 288px;
 }
 
 .add-habit-form>p {
