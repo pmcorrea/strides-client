@@ -17,6 +17,7 @@ a JWT authorization system with expiring tokens, hashing/salting passwords with 
 <img src="https://live.staticflickr.com/65535/49898909447_b73eeccd01.jpg" width="231" height="500" alt="IMG_4769">
 <img src="https://live.staticflickr.com/65535/49898909427_12195cc9d0.jpg" width="231" height="500" alt="IMG_4770">
 <img src="https://live.staticflickr.com/65535/49898909532_fa0e703eac.jpg" width="231" height="500" alt="IMG_4767">
+
 ## Credits
 Images and assests are credited to Pexels, Flat-Icon, Freepic, and Luis Quintero (https://www.pexels.com/@jibarofoto)
 
