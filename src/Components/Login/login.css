@@ -97,3 +97,137 @@ form>div {
 	color: var(--custom-darkblue);
 }
 
+.rightside {
+	background-color: red;
+	width: 50vw;
+	height: 100vh;
+	display: none;
+}
+
+.login-screen {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.secondary-container {
+	display: none;
+}
+
+@media (min-width: 768px) {
+	html {
+		margin: 0px auto;
+	}
+
+	body {
+		max-width: 100vw;
+		width: 100vw;
+		margin: 0px 0px;
+	}
+
+	.rightside {
+		position: relative;
+		background-color: red;
+		width: 50vw;
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.login-container {
+		width: 50vw;
+		height: 100vh;
+		margin: 0px auto;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.login-form {
+		max-width: 300px;
+	}
+
+	.secondary-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.row-1, .row-2, .row-3 {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+
+		width: 100vw;
+		border: solid black 3px;
+	}
+
+	.left {
+		background-color: aqua;
+	}
+
+	.right {
+		background-color: blue;
+	}
+
+	.left, .right {
+		width: 400px;
+		height: 250px;
+	}
+
+	.rightside>img {
+		height: 100%;
+		width: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.title-right {
+		display: block;
+		position: absolute;
+		color: white;
+		font-size: 5rem;
+		text-shadow: 10px 5px 0px black;
+	}
+
+	.nav-links {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+
+		position: absolute;
+		top: 0px;
+		left: 0px;
+
+		width: 100%;
+		height: 80px;
+		padding: 10px 20px;
+
+	}
+
+	.nav-links>a {
+		width: 100px;
+		border: white solid 2px;
+		padding: 5px 0px;
+		border-radius: 20px;
+		cursor: pointer;
+		text-align: center;
+		margin: 0px 10px;
+	}
+
+	.nav-links>a:hover, .nav-links>a:active {
+		font-weight: 800;
+		color: black;
+		background-color: white;;
+	}
+
+
+}
