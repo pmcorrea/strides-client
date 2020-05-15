@@ -30,6 +30,7 @@ label {
 	position: absolute;
 	cursor: text;
 	font-weight: 300;
+	pointer-events: none;
 }
 
 input {
@@ -44,9 +45,7 @@ input {
 	border-right: none;
 	border-bottom: solid var(--custom-darkblue) 1px;
 	font-size: var(--input-font-size);
-	color: var(--custom-darkblue);
-	pointer-events: none;
-	
+	color: var(--custom-darkblue);	
 }
 
 input:focus {
