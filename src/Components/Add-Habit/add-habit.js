@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-
-import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { addHabit, habitsByUser } from "../../Queries/queries"
+
+import ErrBoundary from "../ErrBoundary/err-boundary"
 
 import HomeIcon from "../../Assets/home-icon.svg"
 import PlusIcon from "../../Assets/plus-icon.svg"
@@ -13,7 +14,6 @@ const xss = require('xss')
 
 export default function AddHabit(routeProps) {
 	const [habit, setHabit] = useState('');
-	const [stateError, setError] = useState(null)
 
 	const [sunday, setSunday] = useState(false);
 	const [monday, setMonday] = useState(false);
@@ -23,7 +23,7 @@ export default function AddHabit(routeProps) {
 	const [friday, setFriday] = useState(false);
 	const [saturday, setSaturday] = useState(false);
 
-	const [createHabit, {loading,data,error}] = useMutation(
+	const [createHabit, {data, error}] = useMutation(
 		addHabit,
 		{
 			variables: {
@@ -37,8 +37,7 @@ export default function AddHabit(routeProps) {
 				saturday: saturday,
 			},
 			onError: (error) => {
-				console.log(error.graphQLErrors[0].message)
-				setError(`${error.graphQLErrors[0].message}`)
+				console.log('Strides Error:', error.graphQLErrors[0].message)
 			},
 			refetchQueries: [{ query: habitsByUser }],
 		}
@@ -74,10 +73,8 @@ export default function AddHabit(routeProps) {
 		}
 	}
 
-	if (loading || loading === undefined) {
-		// console.log('loading...')
-	} else if (error) {
-		console.log('err:', error.graphQLErrors[0].message)
+	if (error) {
+		console.error('Strides Error:', error.graphQLErrors[0].message)
 	} else if (data) {
 		routeProps.history.push("/home")
 	}
@@ -90,6 +87,7 @@ export default function AddHabit(routeProps) {
 
 	return (
 		<div>
+		<ErrBoundary>
 			<form action="" className="add-habit-form" onSubmit={(e) => handleSubmit(e)}>
 				<p>I want to</p>
 				<input name="habit" type="text" placeholder="meditate" onChange={(e) => setHabit(xss(e.target.value.toString()))}/>
@@ -166,6 +164,7 @@ export default function AddHabit(routeProps) {
 					</Link>
 				</button>
 			</div>	
+		</ErrBoundary>
 		</div>
 	);
 }

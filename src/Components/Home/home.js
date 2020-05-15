@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 
 import HomeIcon from "../../Assets/home-icon.svg"
 import PlusIcon from "../../Assets/plus-icon.svg"
 import ProfileIcon from "../../Assets/profile-icon.svg"
-
-import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
-import { habitById, logHabit, deleteHabit, habitsByUser } from '../../Queries/queries'
+import ErrBoundary from "../ErrBoundary/err-boundary"
+import { useQuery, useMutation } from '@apollo/client'
+import { logHabit, habitsByUser } from '../../Queries/queries'
 
 import "./home.css"
 const dateHelper = require('date-fns')
@@ -60,15 +60,13 @@ function returnDays({ sunday, monday, tuesday, wednesday, thursday, friday, satu
 
 
 export default function Home() {
-	const [stateError, setError] = useState(null)
 	const { loading, data } = useQuery(habitsByUser)
 
-	const [createLog, { loadinglogDay, datalogday, error }] = useMutation(
+	const [createLog] = useMutation(
 		logHabit,
 		{
 			onError: (error) => {
 				console.log(error)
-				setError(`${error}`)
 			},
 			refetchQueries: [{
 				query: habitsByUser,
@@ -112,6 +110,7 @@ export default function Home() {
 
 	return loading ? (" ") : (
 		<div>
+			<ErrBoundary>
 			<ul>
 				{(data === undefined) ? (" ") : 
 
@@ -178,6 +177,7 @@ export default function Home() {
 					</Link>
 				</button>
 			</div>	
+			</ErrBoundary>
 		</div>
 	);
 }

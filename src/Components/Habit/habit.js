@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Route, Link, Redirect } from "react-router-dom";
+import React from 'react';
+import { Link } from "react-router-dom";
 
-import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
 import { habitById, logHabit, deleteHabit, habitsByUser } from '../../Queries/queries'
-
+import ErrBoundary from "../ErrBoundary/err-boundary"
 import "./habit.css"
 import BackArrowButton from "../../Assets/back.svg"
 import EditButton from '../../Assets/edit.svg'
@@ -13,7 +13,6 @@ import NotCheckmarkButton from '../../Assets/not-checkmark.svg'
 const dateHelper = require('date-fns')
 
 export default function Habit(routeProps) {
-	const [stateError, setError] = useState(null)
 	let habitId = routeProps.match.params.id
 
 	const { loading, data } = useQuery(habitById, {
@@ -140,15 +139,14 @@ export default function Habit(routeProps) {
 		return days
 	}
 
-	const [deleteHabitMutation, { loadingDeleteHabit, dataDeleteHabit, errorHabitDelete}] = useMutation(
+	const [deleteHabitMutation] = useMutation(
 		deleteHabit,
 		{
 			variables: {
 				id: habitId
 			},
-			onError: (errorHabitDelete) => {
-				console.log(errorHabitDelete.graphQLErrors[0].message)
-				setError(`${errorHabitDelete.graphQLErrors[0].message}`)
+			onError: (err) => {
+				console.log(err.graphQLErrors[0].message)
 			},
 			refetchQueries: [{
 				query: habitsByUser,
@@ -159,7 +157,7 @@ export default function Habit(routeProps) {
 		}
 	)
 
-	const [createLog, { loadinglogDay, datalogday, error }] = useMutation(
+	const [createLog] = useMutation(
 		logHabit,
 		{
 			variables: {
@@ -182,22 +180,12 @@ export default function Habit(routeProps) {
 			},
 			onError: (error) => {
 				console.log(error)
-				setError(`${error}`)
 			},
 			refetchQueries: [{ query: habitById,
 				variables: {
 					id: routeProps.match.params.id.toString()
 				} }],
 		});
-
-	// if (loadinglogDay || loadinglogDay === undefined) {
-	// 	// console.log('loading...')
-	// } else if (error) {
-	// 	console.log(error.message)
-	// } else if (datalogday) {
-	// 	console.log(datalogday["logDay"])
-	// }	
-
 
 	function handleHabitDelete() {
 		deleteHabitMutation()
@@ -213,6 +201,7 @@ export default function Habit(routeProps) {
 
 	return loading ? (" ") : (
 		<div>
+			<ErrBoundary>
 			<div className="habit-container">
 				<div className="top-buttons">
 					<Link to="/home">
@@ -255,27 +244,6 @@ export default function Habit(routeProps) {
 				</div>
 
 				<div className="habit-stats">
-					{/* <div className="stat-box">
-						<p>Week</p>
-						<div className="grid-container">
-							<div className="Sunday">S</div>
-							<div className="Monday">M</div>
-							<div className="Tuesday">T</div>
-							<div className="Wednesday">W</div>
-							<div className="Thursday">T</div>
-							<div className="Friday">F</div>
-							<div className="Saturday">S</div>
-
-							<div className="sunday-fill filled">.</div>
-							<div className="monday-fill filled">.</div>
-							<div className="tuesday-fill not-filled">.</div>
-							<div className="wednesday-fill not-filled">.</div>
-							<div className="thursday-fill not-filled">.</div>
-							<div className="friday-fill not-filled">.</div>
-							<div className="saturday-fill not-filled">.</div>
-						</div>
-					</div> */}
-
 					<div className="parent">
 						<p>30 days</p>
 						<ul className="child">
@@ -413,6 +381,7 @@ export default function Habit(routeProps) {
 					<p>Delete</p>
 				</button>
 			</div>
+			</ErrBoundary>
 		</div>
 	);
 }

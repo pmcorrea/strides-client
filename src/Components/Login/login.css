@@ -45,6 +45,7 @@ input {
 	border-bottom: solid var(--custom-darkblue) 1px;
 	font-size: var(--input-font-size);
 	color: var(--custom-darkblue);
+	pointer-events: none;
 	
 }
 

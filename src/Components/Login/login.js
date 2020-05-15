@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
-import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client'
 import { loginUser } from '../../Queries/queries'
-
+import ErrBoundary from "../ErrBoundary/err-boundary"
 import "./login.css"
 import TokenHelpers from '../../Services/token-helpers';
 
@@ -13,14 +13,14 @@ export default function Login(routeProps) {
 	
 	const [loadUser, { loading, data, error }] = useLazyQuery(loginUser);
 	
-	if (error) {
-		console.log(error.message)
+	if (loading) {
+
+	} else if (error) {
+		console.error('err', error.message)
 	} else if (data) {
 		TokenHelpers.clearAuthToken()
 		TokenHelpers.saveAuthToken(data["loginUser"]["token"])
 		routeProps.history.push("/home")		
-	} else {
-
 	}
 
 	function handleSubmit(e) {
@@ -35,6 +35,7 @@ export default function Login(routeProps) {
 
 	return (
 		<div data-testid="login-test-container">
+			<ErrBoundary>
 			<h1 data-testid="login-h1-test-container">Strides</h1>
 
 			<form action="" onSubmit={(e) => handleSubmit(e)} className="login-form">
@@ -58,6 +59,7 @@ export default function Login(routeProps) {
 						</Link>	
 					</div>
 			</form>		
+			</ErrBoundary>
 		</div>
 	);
 }

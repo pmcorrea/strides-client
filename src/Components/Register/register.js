@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-
-import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
+import ErrBoundary from "../ErrBoundary/err-boundary"
+import { useMutation, useLazyQuery } from '@apollo/client'
 import { addUser, getUserByName } from '../../Queries/queries'
 
 import "./register.css"
@@ -12,9 +12,9 @@ export default function Register(routeProps) {
 	const [statePassword, setPassword] = useState('');
 	const [stateConfirmPassword, setConfirmPassword] = useState('');
 
-	const [checkUsernameQuery, { loading: checkLoading, data: checkData, error: checkError }] = useLazyQuery(getUserByName)
+	const [checkUsernameQuery, {data: checkData}] = useLazyQuery(getUserByName)
 	
-	const [createUser, { loading, data, error }] = useMutation(
+	const [createUser, { data, error }] = useMutation(
 		addUser,
 		{ 
 			variables: {
@@ -27,11 +27,7 @@ export default function Register(routeProps) {
 		}
 	)
 
-	
-
-	if (loading || loading === undefined) {
-		// console.log('loading...')
-	} else if (error) {
+	if (error) {
 		console.log('err:', error.graphQLErrors[0].message)	
 	} else if (data) {
 		routeProps.history.push("/")		
@@ -49,11 +45,6 @@ export default function Register(routeProps) {
 		}
 		
 	}
-
-
-		// setUsername(value)
-
-
 
 	function handleSubmit(e) {
 		e.preventDefault()
@@ -81,20 +72,17 @@ export default function Register(routeProps) {
 			if (!result && !result2) {
 				return false
 			}
-
-		
+	
 		} else {
 			return true
 		}
 		
 	}
 
-	
-
 	return (
 		<div>
+			<ErrBoundary>
 			<h1>Register</h1>
-
 			<form action="" onSubmit={(e) => handleSubmit(e)} className="registration-form">
 				<div className="input-container">
 					<input name="username" type="text" placeholder="username" onChange={(e) => {
@@ -103,10 +91,9 @@ export default function Register(routeProps) {
 								user_name: e.target.value
 							}
 						})
-
 						setUsername(e.target.value)
-					}
-					}/>
+					}}/>
+
 					<label htmlFor="username">username</label>
 				</div>
 
@@ -139,8 +126,8 @@ export default function Register(routeProps) {
 			<p>-Must contain special symbols.</p>
 			<p>-Must contain alphanumerical.</p>
 		</div>
-
 			{stateError ? <p>Something went wrong, try again...</p> : (' ')}
+			</ErrBoundary>
 		</div>
 	);
 }

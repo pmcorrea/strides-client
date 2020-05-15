@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { Route, Link, Redirect } from "react-router-dom";
-import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
-import { deleteHabit, habitsByUser, addHabit } from "../../Queries/queries"
-
-import "./edit-habit.css"
-import BackArrowButton from "../../Assets/back.svg"
+import { useMutation } from '@apollo/client';
+import { deleteHabit, habitsByUser, addHabit } from "../../Queries/queries";
+import ErrBoundary from "../ErrBoundary/err-boundary"
+import "./edit-habit.css";
+import BackArrowButton from "../../Assets/back.svg";
 
 
 
 export default function EditHabit(routeProps) {
 	const [habit, setHabit] = useState('');
-	const [stateError, setError] = useState(null)
 	const [sunday, setSunday] = useState(false);
 	const [monday, setMonday] = useState(false);
 	const [tuesday, setTuesday] = useState(false);
@@ -21,15 +19,14 @@ export default function EditHabit(routeProps) {
 
 	let habitId = routeProps.match.params.id
 
-	const [deleteHabitMutation, { loadingDeleteHabit, dataDeleteHabit, errorHabitDelete }] = useMutation(
+	const [deleteHabitMutation] = useMutation(
 		deleteHabit,
 		{
 			variables: {
 				id: habitId
 			},
-			onError: (errorHabitDelete) => {
-				console.log(errorHabitDelete.graphQLErrors[0].message)
-				setError(`${errorHabitDelete.graphQLErrors[0].message}`)
+			onError: (err) => {
+				console.log('Err', err.graphQLErrors[0].message)
 			},
 			refetchQueries: [{
 				query: habitsByUser
@@ -37,7 +34,7 @@ export default function EditHabit(routeProps) {
 		}
 	)
 
-	const [createHabit, { loading, data, error }] = useMutation(
+	const [createHabit, { errorCreateHabit }] = useMutation(
 		addHabit,
 		{
 			variables: {
@@ -50,22 +47,12 @@ export default function EditHabit(routeProps) {
 				friday: friday,
 				saturday: saturday,
 			},
-			onError: (error) => {
-				console.log(error.graphQLErrors[0].message)
-				setError(`${error.graphQLErrors[0].message}`)
+			onError: (err) => {
+				console.log('Err', errorCreateHabit.graphQLErrors[0].message)
 			},
 			refetchQueries: [{ query: habitsByUser }],
 		}
 	)
-
-
-	// if (loading || loading === undefined) {
-	// 	// console.log('loading...')
-	// } else if (error) {
-	// 	console.log('err:', error.graphQLErrors[0].message)
-	// } else if (data) {
-	// 	routeProps.history.push("/home")
-	// }
 
 	function changeDay(value) {
 		if (value === 'sunday') {
@@ -99,15 +86,14 @@ export default function EditHabit(routeProps) {
 
 	function handleSubmit(e) {
 		e.preventDefault()
-		// delete habit
 		deleteHabitMutation()
-		// add habit
 		createHabit()
 		routeProps.history.push("/home")
 	}
 
 	return (
 		<div>
+			<ErrBoundary>
 			<button class="noBorderNoBackground" onClick={() => routeProps.history.goBack()}>
 				<img src={BackArrowButton} alt="" className="edit-icon add-margin" />
 			</button>
@@ -164,12 +150,11 @@ export default function EditHabit(routeProps) {
 
 
 				<button type="submit">
-					
 						Submit
-				
 				</button>
 
 			</form>
+			</ErrBoundary>
 		</div>
 	);
 }

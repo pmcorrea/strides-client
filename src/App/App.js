@@ -1,30 +1,35 @@
+// Libraries
 import React, { Component } from "react";
 import { Route, Link, Redirect } from "react-router-dom";
+import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from "apollo-link-context";
 
+// Styles
 import './App.css';
 import '../Components/Home/home.css';
 
-import MainContext from "../Contexts/MainContext";
-import TokenHelpers from "../Services/token-helpers"
-
-import Login from "../Components/Login/login.js";
-import Home from "../Components/Home/home.js";
-import Register from "../Components/Register/register.js";
-import AddHabit from "../Components/Add-Habit/add-habit.js";
-
-import Profile from "../Components/Profile/profile.js";
-import Habit from "../Components/Habit/habit.js";
-import EditHabit from "../Components/Edit-Habit/edit-habit.js";
-import Settings from "../Components/Settings/settings.js";
-
+// Assets
 import HomeIcon from "../Assets/home-icon.svg"
 import PlusIcon from "../Assets/plus-icon.svg"
 import ProfileIcon from "../Assets/profile-icon.svg"
 
-import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
-import { setContext } from "apollo-link-context";
+// Context, Service, Config
+import MainContext from "../Contexts/MainContext";
+import TokenHelpers from "../Services/token-helpers"
 import config from '../config'
 
+// Components
+import Login from "../Components/Login/login.js";
+import Home from "../Components/Home/home.js";
+import Register from "../Components/Register/register.js";
+import AddHabit from "../Components/Add-Habit/add-habit.js";
+import Profile from "../Components/Profile/profile.js";
+import Habit from "../Components/Habit/habit.js";
+import EditHabit from "../Components/Edit-Habit/edit-habit.js";
+import Settings from "../Components/Settings/settings.js";
+import ErrBoundary from "../Components/ErrBoundary/err-boundary"
+
+// Apollo Link will send token with every request
 const authLink = setContext((_, { headers }) => {
   const token = TokenHelpers.getAuthToken()
   return {
@@ -37,7 +42,7 @@ const authLink = setContext((_, { headers }) => {
 
 const httpLink = new createHttpLink({ uri: `${config.API_ENDPOINT}` })
 
-
+// Instantiate Apollo Client
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
   link: authLink.concat(httpLink)
@@ -45,20 +50,6 @@ const apolloClient = new ApolloClient({
 
 
 export default class App extends Component {
-  constructor() {
-    super()
-    // this.state = {
-    //   token: TokenHelpers.getAuthToken(),
-      
-    //   setToken: () => {
-    //     let someToken = TokenHelpers.getAuthToken()
-        
-    //     this.setState({
-    //       token: someToken
-    //     })
-    //   }
-    // }
-  }
 
   renderMainRoutes() {
     return (
@@ -171,14 +162,11 @@ export default class App extends Component {
     return (
       <ApolloProvider client={apolloClient}>
       <MainContext.Provider value={this.state}>
+        <ErrBoundary>
         <div className="App">
           {this.renderMainRoutes()}
-
-          {/* {window.location.pathname === "/" | window.location.pathname === "/register"
-            ? ""
-            : this.renderBottomBar()
-          }   */}
         </div>
+          </ErrBoundary>
       </MainContext.Provider>
       </ApolloProvider>
     );
