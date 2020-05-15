@@ -128,7 +128,7 @@ form>div {
 
 	.rightside {
 		position: relative;
-		background-color: red;
+		/* background-color: red; */
 		width: 50vw;
 		height: 100vh;
 		display: flex;
