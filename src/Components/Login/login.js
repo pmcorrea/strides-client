@@ -8,6 +8,10 @@ import "./login.css"
 import TokenHelpers from '../../Services/token-helpers';
 import RightSideImg from "../../Assets/right-container.jpg"
 
+import iPhoneMock1 from "../../Assets/IMG_4767_iphonexspacegrey_portrait.png"
+import iPhoneMock2 from "../../Assets/IMG_4768_iphonexspacegrey_portrait.png"
+import iPhoneMock3 from "../../Assets/IMG_4769_iphonexspacegrey_portrait.png"
+
 export default function Login(routeProps) {
 	const [stateUsername, setUsername] = useState('');
 	const [statePassword, setPassword] = useState('');
@@ -78,32 +82,40 @@ export default function Login(routeProps) {
 			
 			<div className="secondary-container">
 				<div className="row-1">
-					<div className="left"></div>
+					<div className="left">
+						<img src={iPhoneMock2} alt="mock-iphone" className="mock-iphone-img"></img>
+					</div>
 					<div className="right">
-						<h1>Be a better version of yourself</h1>
+						<h1>Be a better version</h1>
+						<h1>of yourself</h1>
 						<p>Strides was designed to be a minimalistic habit tracker</p>
-						<p>Simply pick which dates to complete a habit and start logging!.</p>
+						<p>Simply pick which dates to complete a habit and start logging.</p>
 						<p>Get around to your goals and aim for perfect streaks!</p>
 					</div>
 				</div>
 
 				<div className="row-2">
 					<div className="left">
-						<h1>Build the perfect routne</h1>
+						<h1>Build the</h1>
+						<h1>perfect routne</h1>
 						<p>Track unlimited habits to build consistant routines.</p>
 						<p>Plan around your time with custimized schedules.</p>
 						<p>As you log, Strides will automatically generate basic stats and determine perfect streaks. </p>
 					</div>
-					<div className="right"></div>
+					<div className="right">
+						<img src={iPhoneMock1} alt="mock-iphone" className="mock-iphone-img"></img>
+					</div>
 				</div>
 
 				<div className="row-3">
-					<div className="left"></div>
+					<div className="left">
+						<img src={iPhoneMock3} alt="mock-iphone" className="mock-iphone-img"></img>
+					</div>
 					<div className="right">
 						<h1 id="about">About Strides</h1>
 						<p>As the perfect companion for developing new habits, Strides help users create and track personalized habits for thirty days.
 				Be the best version of youself and push yourself to achieve perfect streaks.</p>
-						<br></br>
+
 						<p>Strides was developed using React, NodeJS, GraphQL and Postgres. Deployment tools included Vercel and Heroku.
 						Other notable tools and libraries include: React Hooks, Router and Context, Apollo, and Express.
 						Testing was faciliated using Testing Library, Chai, and Mocha. Security considerations included implementing

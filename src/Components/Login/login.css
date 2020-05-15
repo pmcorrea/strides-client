@@ -159,6 +159,18 @@ form>div {
 		align-items: center;
 	}
 
+	.secondary-container h1 {
+		margin: 0px;
+		padding: 0px;
+	}
+
+	.secondary-container p {
+		width: 40vw;
+		margin: 10px auto;
+		margin-bottom: 15px;
+		font-size: .8rem;
+	}
+
 	.row-1, .row-2, .row-3 {
 		display: flex;
 		flex-direction: row;
@@ -166,20 +178,22 @@ form>div {
 		align-items: center;
 
 		width: 100vw;
-		border: solid black 3px;
+		border-top: solid black 3px;
 	}
 
-	.left {
+	.row-1>.left, .row-3>.left {
 		background-color: aqua;
 	}
 
-	.right {
-		background-color: blue;
+	.row-2>.right{
+		background-color:pink;
 	}
 
 	.left, .right {
-		width: 400px;
-		height: 250px;
+		width: 50vw;
+		height: auto;
+		position: relative;
+		padding: 20px;
 	}
 
 	.rightside>img {
@@ -193,7 +207,7 @@ form>div {
 		display: block;
 		position: absolute;
 		color: white;
-		font-size: 5rem;
+		font-size: 4rem;
 		text-shadow: 10px 5px 0px black;
 	}
 
@@ -229,5 +243,11 @@ form>div {
 		background-color: white;;
 	}
 
+	.mock-iphone-img {
+		max-width: 100%;
+		overflow: hidden;
+		top: absolute;
+		left: 0px;
+	}
 
 }
