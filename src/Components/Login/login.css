@@ -162,13 +162,15 @@ form>div {
 	.secondary-container h1 {
 		margin: 0px;
 		padding: 0px;
+		font-size: 3rem;
 	}
 
 	.secondary-container p {
 		width: 40vw;
 		margin: 10px auto;
 		margin-bottom: 15px;
-		font-size: .8rem;
+		font-size: 1rem;
+		font-weight: 300;
 	}
 
 	.row-1, .row-2, .row-3 {
@@ -248,6 +250,10 @@ form>div {
 		overflow: hidden;
 		top: absolute;
 		left: 0px;
+	}
+
+	.bullets {
+		margin-top: 30px;
 	}
 
 }

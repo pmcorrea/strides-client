@@ -86,11 +86,13 @@ export default function Login(routeProps) {
 						<img src={iPhoneMock2} alt="mock-iphone" className="mock-iphone-img"></img>
 					</div>
 					<div className="right">
-						<h1>Be a better version</h1>
-						<h1>of yourself</h1>
-						<p>Strides was designed to be a minimalistic habit tracker</p>
-						<p>Simply pick which dates to complete a habit and start logging.</p>
+						<h1>Be a</h1>
+						<h1>better self</h1>
+						<div className="bullets">
+						<p>A minimalistic habit tracker</p>
+						<p>Simply pick the dates and start logging.</p>
 						<p>Get around to your goals and aim for perfect streaks!</p>
+						</div>
 					</div>
 				</div>
 
@@ -98,9 +100,11 @@ export default function Login(routeProps) {
 					<div className="left">
 						<h1>Build the</h1>
 						<h1>perfect routne</h1>
-						<p>Track unlimited habits to build consistant routines.</p>
-						<p>Plan around your time with custimized schedules.</p>
-						<p>As you log, Strides will automatically generate basic stats and determine perfect streaks. </p>
+						<div className="bullets">
+							<p>Track unlimited habits to build consistant routines.</p>
+							<p>Plan around your time with customized schedules.</p>
+							<p>Automatically generate stats and determine perfect streaks. </p>
+						</div>
 					</div>
 					<div className="right">
 						<img src={iPhoneMock1} alt="mock-iphone" className="mock-iphone-img"></img>
@@ -113,9 +117,6 @@ export default function Login(routeProps) {
 					</div>
 					<div className="right">
 						<h1 id="about">About Strides</h1>
-						<p>As the perfect companion for developing new habits, Strides help users create and track personalized habits for thirty days.
-				Be the best version of youself and push yourself to achieve perfect streaks.</p>
-
 						<p>Strides was developed using React, NodeJS, GraphQL and Postgres. Deployment tools included Vercel and Heroku.
 						Other notable tools and libraries include: React Hooks, Router and Context, Apollo, and Express.
 						Testing was faciliated using Testing Library, Chai, and Mocha. Security considerations included implementing
