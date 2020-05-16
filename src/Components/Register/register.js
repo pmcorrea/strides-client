@@ -28,7 +28,7 @@ export default function Register(routeProps) {
 	)
 
 	if (error) {
-		console.log('err:', error.graphQLErrors[0].message)	
+		// console.log('err:', error.graphQLErrors[0].message)	
 	} else if (data) {
 		routeProps.history.push("/")		
 	}
@@ -52,7 +52,7 @@ export default function Register(routeProps) {
 	}
 
 	function disableSubmitbutton() {
-		console.log(localStateUsername)
+		// console.log(localStateUsername)
 		if (localStateUsername === '') {
 			return true
 		}
@@ -67,9 +67,8 @@ export default function Register(routeProps) {
 
 			let result = pwPattern.test(stateConfirmPassword)
 			let result2 = whiteSpacePattern.test(stateConfirmPassword)
-			console.log(result, result2)
-
-			if (!result && !result2) {
+			
+			if (result && !result2) {
 				return false
 			}
 	
@@ -112,9 +111,7 @@ export default function Register(routeProps) {
 						Go Back
 					</Link>
 				
-					<button type="submit" style={{ 
-						display: disableSubmitbutton() ? 'none' : 'block'
-						}}>
+					<button type="submit" disabled={ disableSubmitbutton() }>
 							Submit	
 					</button>
 				</div>

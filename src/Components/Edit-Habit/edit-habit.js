@@ -26,7 +26,7 @@ export default function EditHabit(routeProps) {
 				id: habitId
 			},
 			onError: (err) => {
-				console.log('Err', err.graphQLErrors[0].message)
+				// console.log('Err', err.graphQLErrors[0].message)
 			},
 			refetchQueries: [{
 				query: habitsByUser

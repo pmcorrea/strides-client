@@ -64,7 +64,7 @@ export default function Home() {
 		logHabit,
 		{
 			onError: (error) => {
-				console.log(error)
+				// console.log(error)
 			},
 			refetchQueries: [{
 				query: habitsByUser,
@@ -72,7 +72,6 @@ export default function Home() {
 		});
 
 	function diff(startDate) {
-		console.log(startDate)
 		let today_iso = new Date().toISOString()
 		let today = dateHelper.parseISO(today_iso)
 		startDate = dateHelper.parseISO(startDate)
@@ -106,11 +105,28 @@ export default function Home() {
 	}
 	
 
+
+	function doesUserhaveHabits() {
+		if (data !== undefined) {
+			if (data["habitsByUser"].length === 0 ) {
+				return false
+			} else {
+				return true
+			}
+		}
+	}
 	return loading ? (" ") : (
 		<div className="home-main-container">
 			<ErrBoundary>
+
 			<div className="tablet-laptop">
 				<ul>
+						<div className="no-habits-box" style={{
+							display: doesUserhaveHabits() ? "none" : "flex"
+						}}>
+							<h2>create a habit below</h2>
+						</div>
+
 					{(data === undefined) ? (" ") : 
 
 						data['habitsByUser'].map((item) => (

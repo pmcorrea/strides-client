@@ -8,39 +8,81 @@ exports[`should take a snapshot 1`] = `
     </h1>
     <form
       action=""
+      class="registration-form"
     >
-      <input
-        name="username"
-        placeholder="username"
-        type="text"
-      />
-      <input
-        name="password"
-        placeholder="password"
-        type="password"
-      />
-      <input
-        name="confirmPassword"
-        placeholder="confirm password"
-        type="password"
-      />
-      <div>
-        <button
-          type="button"
+      <div
+        class="input-container"
+      >
+        <input
+          name="username"
+          placeholder="username"
+          type="text"
+        />
+        <label
+          for="username"
         >
-          <a
-            href="/"
-          >
-            Go Back
-          </a>
-        </button>
+          username
+        </label>
+      </div>
+      <div
+        class="input-container"
+      >
+        <input
+          name="password"
+          placeholder="password"
+          type="password"
+        />
+        <label
+          for="password"
+        >
+          password
+        </label>
+      </div>
+      <div
+        class="input-container"
+      >
+        <input
+          name="confirmPassword"
+          placeholder="confirm password"
+          type="password"
+        />
+        <label
+          for="confirmPassword"
+        >
+          confirm password
+        </label>
+      </div>
+      <div>
+        <a
+          href="/"
+        >
+          Go Back
+        </a>
         <button
+          disabled=""
           type="submit"
         >
           Submit
         </button>
       </div>
     </form>
+    <div
+      class="password-reqs"
+    >
+      <p>
+        Password requirements:
+      </p>
+      <p>
+        -Length of 8 or more.
+      </p>
+      <p>
+        -Must contain special symbols.
+      </p>
+      <p>
+        -Must contain alphanumerical.
+      </p>
+    </div>
+     
   </div>
 </DocumentFragment>
 `;

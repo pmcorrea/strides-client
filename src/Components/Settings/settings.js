@@ -21,8 +21,9 @@ export default function Settings() {
 				Be the best version of youself and push yourself to achieve perfect streaks.</p> 
 			<br></br>
 			<p>Strides was developed using React, NodeJS, GraphQL and Postgres. Deployment tools included Vercel and Heroku. 
-				Other notable tools and libraries include: React Hooks, Router and Context, Apollo, and Express.
-				Testing was faciliated using Testing Library, Chai, and Mocha. Security considerations included implementing 
+				Other notable tools and libraries include: React Hooks, Router and Context, Apollo, and Express.</p>
+				<br></br>''
+			<p>Testing was faciliated using Testing Library, Chai, and Mocha. Security considerations included implementing 
 				a JWT authorization system with expiring tokens, hashing/salting passwords with bcrypt, sanitizing input with XSS, and CORS for secured headers.</p>
 
 			<h2>Legal</h2>

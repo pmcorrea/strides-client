@@ -146,7 +146,7 @@ export default function Habit(routeProps) {
 				id: habitId
 			},
 			onError: (err) => {
-				console.log(err.graphQLErrors[0].message)
+				// console.log(err.graphQLErrors[0].message)
 			},
 			refetchQueries: [{
 				query: habitsByUser,
@@ -179,7 +179,7 @@ export default function Habit(routeProps) {
 				last_scheduled_logged: last_scheduled_logged
 			},
 			onError: (error) => {
-				console.log(error)
+				// console.log(error)
 			},
 			refetchQueries: [{ query: habitById,
 				variables: {

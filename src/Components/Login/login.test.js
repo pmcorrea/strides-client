@@ -5,20 +5,48 @@ import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'
 import Login from './login';
 
+import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from "apollo-link-context";
+import TokenHelpers from "../../Services/token-helpers"
+import config from '../../config'
+
+// Apollo Link will send token with every request
+const authLink = setContext((_, { headers }) => {
+	const token = TokenHelpers.getAuthToken()
+	return {
+		headers: {
+			...headers,
+			authorization: token ? `bearer ${token}` : null,
+		}
+	}
+})
+
+const httpLink = new createHttpLink({ uri: `${config.API_ENDPOINT}` })
+
+// Instantiate Apollo Client
+const apolloClient = new ApolloClient({
+	cache: new InMemoryCache(),
+	link: authLink.concat(httpLink)
+})
+
 afterEach(cleanup)
 
 // Snapshot Test
 it ('should take a snapshot', () => {
 	const { asFragment } = render(
+		<ApolloProvider client={apolloClient}>
 	<BrowserRouter>
 			<Login />
 	</BrowserRouter>
+		</ApolloProvider>
 	)
 
 	expect(asFragment(
+		<ApolloProvider client={apolloClient}>
 		<BrowserRouter>
 				<Login />
-		</BrowserRouter>)
+		</BrowserRouter>
+		</ApolloProvider>)
 		).toMatchSnapshot()
 })
 
@@ -27,9 +55,11 @@ it('renders without crashing', () => {
 	const div = document.createElement('div')
 
 	ReactDOM.render(
+		<ApolloProvider client={apolloClient}>
 		<BrowserRouter>
 				<Login />
-		</BrowserRouter>,
+		</BrowserRouter>
+		</ApolloProvider>,
 		div
 	)
 	
@@ -39,9 +69,11 @@ it('renders without crashing', () => {
 // Header Contents
 it('should check header contents', () => {
 	const { getByTestId } = render(
+		<ApolloProvider client={apolloClient}>
 		<BrowserRouter>
 			<Login />
 		</BrowserRouter>
+		</ApolloProvider>
 	)
 	const element = getByTestId('login-h1-test-container')
 	expect(element).toHaveTextContent('Strides')

@@ -37,7 +37,7 @@ export default function AddHabit(routeProps) {
 				saturday: saturday,
 			},
 			onError: (error) => {
-				console.log('Strides Error:', error.graphQLErrors[0].message)
+				// console.log('Strides Error:', error.graphQLErrors[0].message)
 			},
 			refetchQueries: [{ query: habitsByUser }],
 		}

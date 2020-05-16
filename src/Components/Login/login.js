@@ -15,33 +15,40 @@ import iPhoneMock3 from "../../Assets/IMG_4769_iphonexspacegrey_portrait.png"
 export default function Login(routeProps) {
 	const [stateUsername, setUsername] = useState('');
 	const [statePassword, setPassword] = useState('');
+	const [stateError, setError] = useState("")
 	
 	const [loadUser, { loading, data, error }] = useLazyQuery(loginUser);
 	
 	if (loading) {
 
 	} else if (error) {
-		console.error('err', error.message)
+		// console.log('1', error.graphQLErrors[0].message)
+		
 	} else if (data) {
 		TokenHelpers.clearAuthToken()
 		TokenHelpers.saveAuthToken(data["loginUser"]["token"])
 		routeProps.history.push("/home")		
 	}
 
+	function handleSubmit(e) {
+		e.preventDefault()
+
+		loadUser(
+			{
+				variables: {
+					user_name: stateUsername,
+					user_password: statePassword
+				},
+				onError: (err) => {
+					// console.log('Error has occured.')
+
+				}
+			})
+	}
+
 	function demoLogin() {
 		setUsername('Peter')
 		setPassword('adminpassword')
-	}
-
-	function handleSubmit(e) {
-		e.preventDefault()	
-		
-		loadUser({
-			variables: {
-				user_name: stateUsername,
-				user_password: statePassword
-			}
-		})
 	}
 
 	return (
@@ -80,9 +87,9 @@ export default function Login(routeProps) {
 					</form>		
 
 					<div style={{ 
-						display: error ? "block" : "none",
-					}}>
-						{error ? [error] : ('')}
+						display: error ? stateError : "none",
+					}} className='login-validation'>
+							{error ? (`${error.graphQLErrors[0].message}`) : ('')}
 					</div>
 					</ErrBoundary>
 				</div>
@@ -91,7 +98,7 @@ export default function Login(routeProps) {
 					<img src={RightSideImg} alt="background-img"></img>
 					<div className="nav-links">
 						<a href="#about">About</a>
-						<a href="https://petercorrea.com">Portfolio</a>
+						<a href="https://petercorrea.com" target="_blank" rel="noopener noreferrer">Portfolio</a>
 					</div>
 					<h1 className="title-right">Your companion for better habits.</h1>
 					

@@ -129,6 +129,27 @@ li>p {
 	display: block;
 }
 
+.home-main-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+}
+
+.no-habits-box {
+	margin: 0 auto;
+	height: 90vh;
+	/* background-color: red; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.no-habits-box>h2 {
+	color: black;
+	text-align: center;
+}
+
 @media screen and (min-width: 768px) {
 	.render-on-desktop {
 		display: block;

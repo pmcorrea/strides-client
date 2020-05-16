@@ -3,43 +3,212 @@
 exports[`should take a snapshot 1`] = `
 <DocumentFragment>
   <div
-    data-testid="login-test-container"
+    class="main-container"
   >
-    <h1
-      data-testid="login-h1-test-container"
+    <div
+      class="login-screen"
     >
-      Strides
-    </h1>
-    <form
-      action=""
-    >
-      <input
-        name="username"
-        placeholder="username"
-        type="text"
-      />
-      <input
-        name="password"
-        placeholder="password"
-        type="password"
-      />
-      <div>
-        <button
-          type="submit"
+      <div
+        class="login-container"
+        data-testid="login-test-container"
+      >
+        <h1
+          data-testid="login-h1-test-container"
         >
-          Login
-        </button>
-        <button
-          type="button"
+          Strides
+        </h1>
+        <form
+          action=""
+          class="login-form"
+        >
+          <div
+            class="input-container"
+          >
+            <input
+              name="username"
+              placeholder="username"
+              type="text"
+            />
+            <label
+              for="username"
+            >
+              username
+            </label>
+          </div>
+          <div
+            class="input-container"
+          >
+            <input
+              name="password"
+              placeholder="username"
+              type="password"
+            />
+            <label
+              for="password"
+            >
+              password
+            </label>
+          </div>
+          <div>
+            <button
+              type="submit"
+            >
+              Login
+            </button>
+            <a
+              href="/register"
+            >
+              Register
+            </a>
+          </div>
+          <div>
+            <button
+              type="submit"
+            >
+              Demo &gt;
+            </button>
+          </div>
+        </form>
+        <div
+          class="login-validation"
+          style="display: none;"
+        />
+      </div>
+      <div
+        class="rightside"
+      >
+        <img
+          alt="background-img"
+          src="right-container.jpg"
+        />
+        <div
+          class="nav-links"
         >
           <a
-            href="/register"
+            href="#about"
           >
-            Register
+            About
           </a>
-        </button>
+          <a
+            href="https://petercorrea.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Portfolio
+          </a>
+        </div>
+        <h1
+          class="title-right"
+        >
+          Your companion for better habits.
+        </h1>
       </div>
-    </form>
+    </div>
+    <div
+      class="secondary-container"
+    >
+      <div
+        class="row-1"
+      >
+        <div
+          class="left"
+        >
+          <img
+            alt="mock-iphone"
+            class="mock-iphone-img"
+            src="IMG_4768_iphonexspacegrey_portrait.png"
+          />
+        </div>
+        <div
+          class="right"
+        >
+          <div>
+            <h1>
+              Be a
+            </h1>
+            <h1>
+              better self
+            </h1>
+          </div>
+          <div
+            class="bullets"
+          >
+            <p>
+              A minimalistic habit tracker
+            </p>
+            <p>
+              Simply pick the dates and start logging.
+            </p>
+            <p>
+              Get around to your goals and aim for perfect streaks!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="row-2"
+      >
+        <div
+          class="left"
+        >
+          <div>
+            <h1>
+              Build the
+            </h1>
+            <h1>
+              perfect routne
+            </h1>
+          </div>
+          <div
+            class="bullets"
+          >
+            <p>
+              Track unlimited habits to build consistant routines.
+            </p>
+            <p>
+              Plan around your time with customized schedules.
+            </p>
+            <p>
+              Automatically generate stats and determine perfect streaks. 
+            </p>
+          </div>
+        </div>
+        <div
+          class="right"
+        >
+          <img
+            alt="mock-iphone"
+            class="mock-iphone-img"
+            src="IMG_4767_iphonexspacegrey_portrait.png"
+          />
+        </div>
+      </div>
+      <div
+        class="row-3"
+      >
+        <div
+          class="left"
+        >
+          <img
+            alt="mock-iphone"
+            class="mock-iphone-img"
+            src="IMG_4769_iphonexspacegrey_portrait.png"
+          />
+        </div>
+        <div
+          class="right"
+        >
+          <h1
+            id="about"
+          >
+            About Strides
+          </h1>
+          <p>
+            Strides was developed using React, NodeJS, GraphQL and Postgres. Deployment tools included Vercel and Heroku. Other notable tools and libraries include: React Hooks, Router and Context, Apollo, and Express. Testing was faciliated using Testing Library, Chai, and Mocha. Security considerations included implementing a JWT authorization system with expiring tokens, hashing/salting passwords with bcrypt, sanitizing input with XSS, and CORS for secured headers.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;
