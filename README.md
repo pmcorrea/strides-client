@@ -7,10 +7,26 @@ As the perfect companion for developing new habits, Strides helps users create a
 Be the best version of youself and push yourself to achieve perfect streaks.
 
 ## Technologies
-Strides was developed using React, NodeJS, GraphQL and Postgres. Deployment tools included Vercel and Heroku.
-Other notable tools and libraries include: React Hooks, Router and Context, Apollo, and Express.
-Testing was faciliated using Testing Library, Chai, and Mocha. Security considerations included implementing
-a JWT authorization system with expiring tokens, hashing/salting passwords with bcrypt, sanitizing input with XSS, and CORS for secured headers.
+- **React** building user interface 
+- **Node**
+- **Express**
+- **express-graphql**
+- **Apollo**
+- **Knex**
+- **Postgres**
+- **Mocha**
+- **Chai**
+- **Supertest**
+- **bcrypt**
+- **JSON Web Token**
+- **Postgrator**
+- **Testing Library**
+- **XSS**
+- **date-fs**
+- **cors**
+- **helmet**
+- **morgan**
+- **nodemon**
 
 ## API
 ### Endpoints
