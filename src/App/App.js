@@ -1,17 +1,12 @@
 // Libraries
 import React, { Component } from "react";
-import { Route, Link, Redirect } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from "apollo-link-context";
 
 // Styles
 import './App.css';
 import '../Components/Home/home.css';
-
-// Assets
-import HomeIcon from "../Assets/home-icon.svg"
-import PlusIcon from "../Assets/plus-icon.svg"
-import ProfileIcon from "../Assets/profile-icon.svg"
 
 // Context, Service, Config
 import MainContext from "../Contexts/MainContext";

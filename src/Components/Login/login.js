@@ -15,7 +15,6 @@ import iPhoneMock3 from "../../Assets/IMG_4769_iphonexspacegrey_portrait.png"
 export default function Login(routeProps) {
 	const [stateUsername, setUsername] = useState('');
 	const [statePassword, setPassword] = useState('');
-	const [stateError, setError] = useState("")
 	
 	const [loadUser, { loading, data, error }] = useLazyQuery(loginUser);
 	
@@ -87,7 +86,7 @@ export default function Login(routeProps) {
 					</form>		
 
 					<div style={{ 
-						display: error ? stateError : "none",
+						display: error ? "block" : "none",
 					}} className='login-validation'>
 							{error ? (`${error.graphQLErrors[0].message}`) : ('')}
 					</div>
