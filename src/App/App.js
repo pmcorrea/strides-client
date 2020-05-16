@@ -132,32 +132,6 @@ export default class App extends Component {
     )
   }
 
-  renderBottomBar() {
-    return (
-      <>
-        <div className="bottom-toolbar">
-          <button>
-            <Link to="/home">
-              <img src={HomeIcon} alt="" className="icon-bar-icon" />
-            </Link>
-          </button>
-
-          <button> 
-            <Link to="/add-habit">
-              <img src={PlusIcon} alt="" className="icon-bar-icon" />
-            </Link>
-          </button>
-
-          <button>
-            <Link to="/profile">
-             <img src={ProfileIcon} alt="" className="icon-bar-icon" />
-            </Link>
-          </button>
-        </div>	
-      </>
-    )
-  }
-
   render() {
     return (
       <ApolloProvider client={apolloClient}>

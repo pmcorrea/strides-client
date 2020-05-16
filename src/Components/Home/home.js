@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import { Responsive } from "react-responsive";
 
 import HomeIcon from "../../Assets/home-icon.svg"
 import PlusIcon from "../../Assets/plus-icon.svg"
@@ -7,6 +8,7 @@ import ProfileIcon from "../../Assets/profile-icon.svg"
 import ErrBoundary from "../ErrBoundary/err-boundary"
 import { useQuery, useMutation } from '@apollo/client'
 import { logHabit, habitsByUser } from '../../Queries/queries'
+import AddHabitHome from "../Add-Habit-Home/add-habit-home"
 
 import "./home.css"
 const dateHelper = require('date-fns')
@@ -53,10 +55,6 @@ function returnDays({ sunday, monday, tuesday, wednesday, thursday, friday, satu
 	days = days.join(", ")
 	return days
 }
-
-
-
-	
 
 
 export default function Home() {
@@ -109,54 +107,58 @@ export default function Home() {
 	
 
 	return loading ? (" ") : (
-		<div>
+		<div className="home-main-container">
 			<ErrBoundary>
-			<ul>
-				{(data === undefined) ? (" ") : 
+			<div className="tablet-laptop">
+				<ul>
+					{(data === undefined) ? (" ") : 
 
-					data['habitsByUser'].map((item) => (
-					<li key={item.id}>
-						<div className="habit-tool-bar">
-							<p>{item.title}</p>
+						data['habitsByUser'].map((item) => (
+						<li key={item.id}>
+							<div className="habit-tool-bar">
+								<p>{item.title}</p>
 
-							<div>
-									<button className="cursor" onClick={() => createLog({
-										variables: {
-										id: `${item.id}`,
-										column: diff(item.habit_start_date),
-										current_streak: item.current_streak,
-										last_log: item.last_log,
-										highest_streak: item.highest_streak,
+								<div>
+										<button className="cursor" onClick={() => createLog({
+											variables: {
+											id: `${item.id}`,
+											column: diff(item.habit_start_date),
+											current_streak: item.current_streak,
+											last_log: item.last_log,
+											highest_streak: item.highest_streak,
 
-										habit_start_date: item.habit_start_date,
-										perfect_streak: item.perfect_streak,
-										sunday: item.sunday,
-										monday: item.monday,
-										tuesday: item.tuesday,
-										wednesday: item.wednesday,
-										thursday: item.thursday,
-										friday: item.friday,
-										saturday: item.saturday,
-										last_scheduled_logged: item.last_scheduled_logged
-										}})}>log</button>
-								<button>
-									<Link to={`/habit/${item.id}`}>
-										...
-									</Link>
-								</button>
+											habit_start_date: item.habit_start_date,
+											perfect_streak: item.perfect_streak,
+											sunday: item.sunday,
+											monday: item.monday,
+											tuesday: item.tuesday,
+											wednesday: item.wednesday,
+											thursday: item.thursday,
+											friday: item.friday,
+											saturday: item.saturday,
+											last_scheduled_logged: item.last_scheduled_logged
+											}})}>log</button>
+									<button>
+										<Link to={`/habit/${item.id}`}>
+											...
+										</Link>
+									</button>
+								</div>
 							</div>
-						</div>
 
-							<p>{returnDays(item)}</p>
-						<div className="progress-bar">
-								<div className="progress-bar-fill" style={{
-									width: `${progressBarPercentage(item.habit_start_date)}%`
-								}}></div>
-						</div>
-					</li>
-				)
-				)}
-			</ul>
+								<p>{returnDays(item)}</p>
+							<div className="progress-bar">
+									<div className="progress-bar-fill" style={{
+										width: `${progressBarPercentage(item.habit_start_date)}%`
+									}}></div>
+							</div>
+						</li>
+					)
+					)}
+				</ul>
+
+				<AddHabitHome className="render-on-desktop"/>
+			</div>
 
 			<div className="bottom-toolbar">
 				<button>
@@ -165,7 +167,7 @@ export default function Home() {
 					</Link>
 				</button>
 
-				<button>
+					<button className="plus-icon">
 					<Link to="/add-habit">
 						<img src={PlusIcon} alt="" className="icon-bar-icon" />
 					</Link>

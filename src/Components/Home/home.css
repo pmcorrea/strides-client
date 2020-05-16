@@ -120,3 +120,50 @@ li>p {
 .cursor {
 	cursor: pointer;
 }
+
+.render-on-desktop {
+	display: none;
+}
+
+.tablet-laptop {
+	display: block;
+}
+
+@media screen and (min-width: 768px) {
+	.render-on-desktop {
+		display: block;
+	}
+
+	.tablet-laptop {
+		display: flex;
+		flex-direction: row;
+		width: 90vw;
+		justify-content: space-between;
+		align-content: flex-start;
+	}
+
+	ul {
+		max-width: 300px;
+		max-height: 100vh;
+		overflow: scroll;
+		margin: 0px;
+	}
+	ul>li:last-child {
+		margin-bottom: 100px;
+	}
+
+	.home-main-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.plus-icon{
+		display: none;
+	}
+
+	.settings-container{
+		width: 90vw;
+	}
+
+}

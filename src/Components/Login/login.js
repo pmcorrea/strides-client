@@ -86,8 +86,10 @@ export default function Login(routeProps) {
 						<img src={iPhoneMock2} alt="mock-iphone" className="mock-iphone-img"></img>
 					</div>
 					<div className="right">
+						<div>
 						<h1>Be a</h1>
 						<h1>better self</h1>
+						</div>
 						<div className="bullets">
 						<p>A minimalistic habit tracker</p>
 						<p>Simply pick the dates and start logging.</p>
@@ -98,8 +100,10 @@ export default function Login(routeProps) {
 
 				<div className="row-2">
 					<div className="left">
+						<div>
 						<h1>Build the</h1>
 						<h1>perfect routne</h1>
+						</div>
 						<div className="bullets">
 							<p>Track unlimited habits to build consistant routines.</p>
 							<p>Plan around your time with customized schedules.</p>

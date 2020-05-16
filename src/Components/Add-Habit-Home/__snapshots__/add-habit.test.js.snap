@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should take a snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <form
+      action=""
+      class="add-habit-form"
+    >
+      <p>
+        I want to
+      </p>
+      <input
+        name="habit"
+        placeholder="meditate"
+        type="text"
+      />
+      <p>
+        every
+      </p>
+      <div>
+        <button
+          class="circle-button-s"
+          style="background-color: white; color: black;"
+          type="button"
+          value="sunday"
+        >
+          S
+        </button>
+        <button
+          class="circle-button-s"
+          style="background-color: white; color: black;"
+          type="button"
+          value="monday"
+        >
+          M
+        </button>
+        <button
+          class="circle-button-s"
+          style="background-color: white; color: black;"
+          type="button"
+          value="tuesday"
+        >
+          T
+        </button>
+        <button
+          class="circle-button-s"
+          style="background-color: white; color: black;"
+          type="button"
+          value="wednesday"
+        >
+          W
+        </button>
+        <button
+          class="circle-button-s"
+          style="background-color: white; color: black;"
+          type="button"
+          value="thursday"
+        >
+          T
+        </button>
+        <button
+          class="circle-button-s"
+          style="background-color: white; color: black;"
+          type="button"
+          value="friday"
+        >
+          F
+        </button>
+        <button
+          class="circle-button-s"
+          style="background-color: white; color: black;"
+          type="button"
+          value="saturday"
+        >
+          S
+        </button>
+      </div>
+      <p>
+        for 30 days
+      </p>
+      <button
+        type="submit"
+      >
+        <a
+          href="/home"
+        >
+          Submit
+        </a>
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

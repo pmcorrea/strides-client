@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
 import { useMutation } from '@apollo/client'
 import { addHabit, habitsByUser } from "../../Queries/queries"
 
 import ErrBoundary from "../ErrBoundary/err-boundary"
 
-import HomeIcon from "../../Assets/home-icon.svg"
-import PlusIcon from "../../Assets/plus-icon.svg"
-import ProfileIcon from "../../Assets/profile-icon.svg"
-
-import "./add-habit.css"
+import "./add-habit-home.css"
 const xss = require('xss')
 
-export default function AddHabit(routeProps) {
+export default function AddHabitHome(routeProps) {
 	const [habit, setHabit] = useState('');
 
 	const [sunday, setSunday] = useState(false);
@@ -144,26 +139,6 @@ export default function AddHabit(routeProps) {
 						</button>
 					
 			</form>
-
-			<div className="bottom-toolbar">
-				<button>
-					<Link to="/home">
-						<img src={HomeIcon} alt="" className="icon-bar-icon" />
-					</Link>
-				</button>
-
-				<button>
-					<Link to="/add-habit">
-						<img src={PlusIcon} alt="" className="icon-bar-icon" />
-					</Link>
-				</button>
-
-				<button>
-					<Link to="/profile">
-						<img src={ProfileIcon} alt="" className="icon-bar-icon" />
-					</Link>
-				</button>
-			</div>	
 		</ErrBoundary>
 		</div>
 	);

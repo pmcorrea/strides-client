@@ -33,7 +33,7 @@ export default function Profile() {
 	}
 
 	return (
-	<div>
+	<div className="profile-main-container">
 			<ErrBoundary>
 		<div className="profile-box">
 			<div className="top-bar">
@@ -84,7 +84,7 @@ export default function Profile() {
 				</Link>
 			</button>
 
-			<button>
+			<button className="plus-icon">
 				<Link to="/add-habit">
 					<img src={PlusIcon} alt="" className="icon-bar-icon" />
 				</Link>
