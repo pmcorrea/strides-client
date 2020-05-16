@@ -1,5 +1,7 @@
 # Strides
 https://strides.now.sh
+https://github.com/pmcorrea/strides-client
+https://github.com/pmcorrea/strides-server
 
 ## Summary
 As the perfect companion for developing new habits, Strides helps users create and track personalized habits for thirty days. As you complete daily logs, Strides automatically updates to determine total logs, perfect streaks, biggest steaks, total of completed habits and present that information to you.
@@ -7,26 +9,26 @@ As the perfect companion for developing new habits, Strides helps users create a
 Be the best version of youself and push yourself to achieve perfect streaks.
 
 ## Technologies
-- **React** building user interface 
-- **Node**
-- **Express**
-- **express-graphql**
-- **Apollo**
-- **Knex**
-- **Postgres**
-- **Mocha**
-- **Chai**
-- **Supertest**
-- **bcrypt**
-- **JSON Web Token**
-- **Postgrator**
-- **Testing Library**
-- **XSS**
-- **date-fs**
-- **cors**
-- **helmet**
-- **morgan**
-- **nodemon**
+- **React**: building user interface 
+- **Node**: JavaScript runtime enviroment
+- **Express**: web application framework
+- **express-graphql**: GraphQL server
+- **Apollo**: GraphQL client
+- **Knex**: SQL query builder
+- **Postgres**: relational database
+- **Mocha**: test framework
+- **Chai**: assertion library
+- **Supertest**: endpoint testing library
+- **bcrypt**: implementation of bcrupt hashing function
+- **JSON Web Token**: authorization implementation via JWTs
+- **Postgrator**: database migration handleing 
+- **Testing Library**: testing React components
+- **XSS**: sanitizing user inputs
+- **date-fs**: date utility library
+- **cors**: express middleware for CORS configuration
+- **helmet**: express middleware for securing HTTP headers
+- **morgan**: express middleware for logging
+- **nodemon**: server hot-reload
 
 ## API
 ### Endpoints
@@ -112,6 +114,7 @@ token: { type: GraphQLString }
 
 ### Queries
 #### getUserByName
+Retrieves a user given a username as an argument.
 ```
 query getUserByName($user_name: String!){
 		getUserByName(user_name: $user_name) {
@@ -121,6 +124,7 @@ query getUserByName($user_name: String!){
 ```
 
 #### habits
+Retrieves all habits by all users.
 ```
 {
 	habits {
@@ -177,6 +181,7 @@ query getUserByName($user_name: String!){
 ```
 
 #### habitById
+Retrieves a single habit given an id as an argument.
 ```
 query habitById ($id: String!){
 		habitById(id: $id) {
@@ -236,6 +241,7 @@ query habitById ($id: String!){
 ```
 
 #### habitsByUser
+Retrieves all habits for a single user.
 ```
 query habitsByUser{
 	habitsByUser {
@@ -259,6 +265,7 @@ query habitsByUser{
 ```
 
 #### loginUser
+Retrieves username and token for a single user given login credentials.
 ```
 query loginUser($user_name: String!, $user_password: String!) {
 	loginUser(user_name: $user_name, user_password: $user_password) {
@@ -270,6 +277,7 @@ query loginUser($user_name: String!, $user_password: String!) {
 ```
 
 #### addUser
+Inserts a user given credentials.
 ```
 mutation addUser($user_name: String!, $user_password: String!) {
 	addUser(user_name: $user_name, user_password: $user_password) {
@@ -280,6 +288,7 @@ mutation addUser($user_name: String!, $user_password: String!) {
 ```
 
 #### addHabit
+Inserts a habit given arguments for title and appropriate days of the week.
 ```
 	mutation addHabit(
 		$title: String!, 
@@ -307,6 +316,7 @@ mutation addUser($user_name: String!, $user_password: String!) {
 ```
 
 #### logHabit
+Updates a habit details.
 ```
 	mutation logHabit($id: String!, $column: String!, $current_streak: Int!, $last_log: String, $highest_streak: Int!,
 		$habit_start_date: String!, $perfect_streak: String, $last_scheduled_logged: String, $sunday: String!, $monday: String!, $tuesday: String!, $wednesday: String!, $thursday: String!, $friday: String!, $saturday: String!) {
@@ -319,6 +329,7 @@ mutation addUser($user_name: String!, $user_password: String!) {
 ```
 
 #### deleteHabit
+Deletes a habit provided an id.
 ```
 	mutation deleteHabit($id: String!) {
 		deleteHabit(id: $id) {
@@ -329,6 +340,7 @@ mutation addUser($user_name: String!, $user_password: String!) {
 ```
 
 #### editHabit
+Updates a habit.
 ```
 	mutation editHabit(
 		$title: String!, 
@@ -356,6 +368,7 @@ mutation addUser($user_name: String!, $user_password: String!) {
 ```
 
 #### userById
+Retrieves a user given an id as an argument.
 ```
 	query userById {
 		userById {
@@ -370,6 +383,7 @@ mutation addUser($user_name: String!, $user_password: String!) {
 ```
 
 #### logged_total
+Updates the logged_total total for a user.
 ```
 	mutation logged_total($value: String!) {
 		logged_total(value: $value) {
@@ -381,6 +395,7 @@ mutation addUser($user_name: String!, $user_password: String!) {
 ```
 
 #### perfect_habits
+Updates the perfect_streaks total for a user.
 ```
 	mutation perfect_habits($value: String!) {
 		perfect_habits(value: $value) {
@@ -392,6 +407,7 @@ mutation addUser($user_name: String!, $user_password: String!) {
 ```
 
 #### biggest_streak
+Updates the biggest_streak total for a user.
 ```
 	mutation biggest_streak($value: String!) {
 		biggest_streak(value: $value) {
@@ -403,6 +419,7 @@ mutation addUser($user_name: String!, $user_password: String!) {
 ```
 
 #### habits_done
+Updates the total habits completed for a user.
 ```
 	mutation habits_done($value: String!) {
 		habits_done(value: $value) {

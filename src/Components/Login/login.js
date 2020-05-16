@@ -28,8 +28,14 @@ export default function Login(routeProps) {
 		routeProps.history.push("/home")		
 	}
 
+	function demoLogin() {
+		setUsername('Peter')
+		setPassword('adminpassword')
+	}
+
 	function handleSubmit(e) {
 		e.preventDefault()	
+		
 		loadUser({
 			variables: {
 				user_name: stateUsername,
@@ -65,7 +71,19 @@ export default function Login(routeProps) {
 									Register
 								</Link>	
 							</div>
+
+							<div>
+								<button type='submit' onClick={() => demoLogin()}>
+									Demo >
+								</button>
+							</div>
 					</form>		
+
+					<div style={{ 
+						display: error ? "block" : "none",
+					}}>
+						{error ? [error] : ('')}
+					</div>
 					</ErrBoundary>
 				</div>
 			
